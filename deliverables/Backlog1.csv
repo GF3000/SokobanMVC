@@ -1,0 +1,7 @@
+Issue ID,URL,Title,State,Description,Author,Author Username,Assignee,Assignee Username,Confidential,Locked,Due Date,Created At (UTC),Updated At (UTC),Closed At (UTC),Milestone,Weight,Labels,Time Estimate,Time Spent
+3,https://costa.ls.fi.upm.es/gitlab/210239/sokoban/-/issues/3,Clase Tablero,Open,,"FRANCO GIMENO, GUILLERMO",210245,"","",No,No,,2024-04-24 14:44:10,2024-05-09 19:33:56,,,,"To Do,high",0,0
+4,https://costa.ls.fi.upm.es/gitlab/210239/sokoban/-/issues/4,Clase Nivel,Open,,"FRANCO GIMENO, GUILLERMO",210245,"","",No,No,,2024-04-24 14:49:39,2024-05-09 19:34:25,,,,"To Do,high",0,0
+7,https://costa.ls.fi.upm.es/gitlab/210239/sokoban/-/issues/7,Clase Partida,Open,,"FERNÁNDEZ ALEGRÍA, VICTORIA",210153,"","",No,No,,2024-05-09 19:24:32,2024-05-09 19:35:58,,,,"To Do,medium",0,0
+8,https://costa.ls.fi.upm.es/gitlab/210239/sokoban/-/issues/8,Controlador,Open,,"FERNÁNDEZ ALEGRÍA, VICTORIA",210153,"","",No,No,,2024-05-09 19:25:28,2024-05-09 19:33:38,,,,"To Do,medium",0,0
+9,https://costa.ls.fi.upm.es/gitlab/210239/sokoban/-/issues/9,Vista,Open,,"FERNÁNDEZ ALEGRÍA, VICTORIA",210153,"","",No,No,,2024-05-09 19:25:50,2024-05-09 19:33:10,,,,"To Do,medium",0,0
+10,https://costa.ls.fi.upm.es/gitlab/210239/sokoban/-/issues/10,README,Open,Relizar el README del proyecto con la información más importante,"CARO FUENTES, VÍCTOR",210239,"","",No,No,,2024-05-09 19:28:20,2024-05-09 19:30:15,,,,"feature,low",0,0
