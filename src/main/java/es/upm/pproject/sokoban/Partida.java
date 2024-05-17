@@ -1,5 +1,10 @@
 package main.java.es.upm.pproject.sokoban;
 
+import java.io.FileNotFoundException;
+
+import es.upm.pproject.sokoban.Nivel;
+import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
+
 public class Partida {
 
     private Nivel nivel;
@@ -113,16 +118,22 @@ public class Partida {
      * @return true si el nivel fue incrementado exitosamente
      */
     public boolean siguienteNivel() {
-        nivel = new Nivel(++numeroNivel);
-        return true;
+        try{
+            nivel = new Nivel(++numeroNivel);
+            return true;
+        }catch(FileNotFoundException | IncorrectLevelException e){
+            return false;
+        }
+
     }
 
     /**
      * Mueve el personaje en la dirección especificada.
      * 
      * @param direccion la dirección en la que se debe mover el personaje ('W', 'A', 'S', 'D' para arriba, izquierda, abajo, derecha respectivamente)
+     * @throws InterruptedException 
      */
-    public void mover(char direccion) {
+    public void mover(char direccion) throws InterruptedException {
         if (nivel.getTablero().mover(direccion)) {
             nivel.getEstadosAnteriores().add(nivel.getTablero().getMatriz());
             controlador.actualizarTablero();
@@ -132,6 +143,7 @@ public class Partida {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     System.out.println("Error en el sleep");
+                    throw e; // Rethrow the InterruptedException
                 }
                 if (siguienteNivel())
                     controlador.actualizarTablero();
