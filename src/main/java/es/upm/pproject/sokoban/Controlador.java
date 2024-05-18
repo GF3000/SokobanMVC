@@ -1,4 +1,4 @@
-package main.java.es.upm.pproject.sokoban;
+package es.upm.pproject.sokoban;
 
 /*
  * Controlador	
@@ -14,7 +14,7 @@ package main.java.es.upm.pproject.sokoban;
  */
 public class Controlador {
 
-    private Partida partida;
+    private static Partida partida;
     private Vista vista;
 
     /**
@@ -31,7 +31,7 @@ public class Controlador {
      * Método que decide qué hacer cuando se pulsa una tecla
      * @param tecla
      */
-    public void ejecutarTecla(char tecla) {
+    public static void ejecutarTecla(char tecla) {
         try {
             partida.mover(tecla);
         } catch (Exception e) {

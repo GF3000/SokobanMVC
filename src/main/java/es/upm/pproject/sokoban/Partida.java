@@ -1,4 +1,4 @@
-package main.java.es.upm.pproject.sokoban;
+package es.upm.pproject.sokoban;
 
 import java.io.FileNotFoundException;
 
