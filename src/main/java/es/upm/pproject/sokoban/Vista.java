@@ -19,13 +19,14 @@ import javax.swing.SwingUtilities;
 public class Vista extends JFrame {
     private HashMap<String, BufferedImage> images; // set of images
     private int size = 64; // size of the tile
-    // private Controlador controlador; // creo que esto finalmente no hace falta aqui
+    private Controlador controlador; // creo que esto finalmente no hace falta aqui
 
     // labels para nivel, puntos y total
     private JLabel levelLabel;
     private JLabel pointsLabel;
 
-    public Vista() {
+    public Vista(Controlador controlador) {
+        this.controlador = controlador;
         images = new HashMap<String, BufferedImage>();
         loadImages();
         // establecer fondo a color
@@ -47,6 +48,7 @@ public class Vista extends JFrame {
         add(pointsLabel);
 
         // tema de keypressed
+        setFocusable(true);//NO SE SI ES NECESARIO: se usa para que la ventana pueda recibir eventos del teclado
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 char key = e.getKeyChar();
@@ -134,10 +136,10 @@ public class Vista extends JFrame {
         try {
             Nivel n = new Nivel(1);
             Partida p = new Partida(n,0,1);
-            // Controlador c = new Controlador(new Vista(), p);
+            Controlador c = new Controlador(new Vista(p.getControlador()), p);
             
             SwingUtilities.invokeLater(() -> {
-                Vista vista = new Vista();
+                Vista vista = new Vista(c);
                 vista.pintar(p);
                 vista.setVisible(true);
             });
