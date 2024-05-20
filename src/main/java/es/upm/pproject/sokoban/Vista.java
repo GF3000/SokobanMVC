@@ -53,11 +53,11 @@ public class Vista extends JFrame {
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 char key = e.getKeyChar();
-                System.out.println("key pressed: " + key);
+                // System.out.println("key pressed: " + key);
                 keyPressed(key);
             }
             private void keyPressed(char key) {
-                System.out.println("si entra");
+                // System.out.println("si entra");
                 
                 // if any key is pressed, the controler will be called
                 c.ejecutarTecla(key);
@@ -113,7 +113,7 @@ public class Vista extends JFrame {
 
         // necesitamos la matriz de tablero para dibujarla
         Tablero tab = partida.getNivel().getTablero();
-        System.out.println(tab.toString());
+        // System.out.println(tab.toString());
         char[][] matriz = tab.getMatriz();
        
         // Actualizar el JLabel con el nivel actual
