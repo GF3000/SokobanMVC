@@ -39,7 +39,7 @@ public class Vista extends JFrame {
 
         // labels para nivel y puntos
         levelLabel = new JLabel("Level: ");
-        levelLabel.setForeground(Color.WHITE);
+        levelLabel.setForeground(Color.black);
         levelLabel.setFont(new Font("Arial", Font.BOLD, 20));
         add(levelLabel);
 
@@ -81,6 +81,9 @@ public class Vista extends JFrame {
         try {
             images.put("#", ImageIO.read(getClass().getResource("./images/cajaInt.png")));
             images.put("W", ImageIO.read(getClass().getResource("./images/man.png")));
+            images.put("&", ImageIO.read(getClass().getResource("./images/man.png")));
+            images.put("_", ImageIO.read(getClass().getResource("./images/cajaInt.png")));
+
             images.put("+", ImageIO.read(getClass().getResource("./images/wall.png")));
             images.put(" ", ImageIO.read(getClass().getResource("./images/suelo2.png")));
             images.put("*", ImageIO.read(getClass().getResource("./images/sueloPunto2.png")));
@@ -110,6 +113,7 @@ public class Vista extends JFrame {
 
         // necesitamos la matriz de tablero para dibujarla
         Tablero tab = partida.getNivel().getTablero();
+        System.out.println(tab.toString());
         char[][] matriz = tab.getMatriz();
        
         // Actualizar el JLabel con el nivel actual
