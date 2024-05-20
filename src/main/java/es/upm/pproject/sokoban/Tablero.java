@@ -369,14 +369,4 @@ public class Tablero {
         LOGGER.debug("Tablero transformado a String");
         return s;
     }
-    public static void main(String[] args) {
-        try{
-            Tablero t = new Tablero("./niveles/level_1.txt");
-            System.out.println(t.toString());
-            t.mover('r');
-            System.out.println(t.toString());
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
 }
