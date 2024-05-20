@@ -27,6 +27,15 @@ public class Controlador {
         this.partida = partida;
     }
 
+    //getVista
+    public Vista getVista() {
+        return vista;
+    }
+    //getPartida
+    public Partida getPartida() {
+        return partida;
+    }
+
     /**
      * Método que decide qué hacer cuando se pulsa una tecla
      * @param tecla

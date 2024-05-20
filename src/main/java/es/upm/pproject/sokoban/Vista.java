@@ -20,14 +20,14 @@ import javax.swing.SwingUtilities;
 public class Vista extends JFrame {
     private HashMap<String, BufferedImage> images; // set of images
     private int size = 64; // size of the tile
-    private Controlador controlador; // creo que esto finalmente no hace falta aqui
+    private Controlador c; // creo que esto finalmente no hace falta aqui
 
     // labels para nivel, puntos y total
     private JLabel levelLabel;
     private JLabel pointsLabel;
 
-    public Vista(Controlador controlador) {
-        this.controlador = controlador;
+    public Vista() {
+
         images = new HashMap<String, BufferedImage>();
         loadImages();
         // establecer fondo a color
@@ -57,13 +57,18 @@ public class Vista extends JFrame {
                 keyPressed(key);
             }
             private void keyPressed(char key) {
+                System.out.println("si entra");
+                
                 // if any key is pressed, the controler will be called
-                Controlador.ejecutarTecla(key);
+                c.ejecutarTecla(key);
             }
         });
         
     }
 
+    public void setControlador(Controlador c) {
+        this.c = c;
+    }
     // auxiliar method to get the images and associate them with the characters of the matrix that represent 
     // different elements of the game
     private void loadImages() {
@@ -100,6 +105,8 @@ public class Vista extends JFrame {
     }
 
     public void pintar(Partida partida) {
+        //borrar lo que habia antes de repintar
+        getContentPane().removeAll();
 
         // necesitamos la matriz de tablero para dibujarla
         Tablero tab = partida.getNivel().getTablero();
@@ -124,13 +131,15 @@ public class Vista extends JFrame {
                 drawMatrizPix(matriz,g);
             }
         };
-        getContentPane().add(panel);
+        // getContentPane().add(panel);
 
         //  Ajustar el tamaño del panel al tamaño de la matriz
         panel.setPreferredSize(new Dimension(matriz[0].length * size, matriz.length * size));
         
         // Agregar el panel al JFrame
         getContentPane().add(panel);
+        getContentPane().repaint();
+        getContentPane().revalidate();
     }
 
     public JLabel getLevelLabel() {
@@ -146,17 +155,21 @@ public class Vista extends JFrame {
     }
   
     public static void main(String[] args) {
+       
         try {
             Nivel n = new Nivel(1);
             Partida p = new Partida(n,0,1);
-            Controlador c = new Controlador(new Vista(p.getControlador()), p);
+            Vista v = new Vista();
+            Controlador c = new Controlador(v, p);
+            c.getPartida().setControlador(c);
+            c.getVista().setControlador(c);
             
             SwingUtilities.invokeLater(() -> {
-                Vista vista = new Vista(c);
-                vista.pintar(p);
-                vista.setVisible(true);
+                // Vista vista = new Vista(c);
+                c.getVista().pintar(p);
+                c.getVista().setVisible(true);
             });
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
