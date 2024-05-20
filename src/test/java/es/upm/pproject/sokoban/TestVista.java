@@ -32,7 +32,7 @@ class TestVista {
 
     @BeforeEach
     void setUp() {
-        vista = new Vista(controlador); 
+        vista = new Vista(); 
     }
 
     @Test
@@ -47,7 +47,7 @@ class TestVista {
     @Test
     @DisplayName("Test Constructor: datos correctos")
     void testConstructorVistaConConstructor(){
-        vista = new Vista(controlador);
+        vista = new Vista();
         assertNotNull(vista);
     }
 
@@ -83,7 +83,7 @@ class TestVista {
     @Test
     @DisplayName("Test carga de imágenes y mapeo de caracteres")
     void testCargaImagenesYMapeo() {
-        Vista vista = new Vista(null); // Controlador es null porque no es necesario para esta prueba
+        Vista vista = new Vista(); 
         HashMap<String, BufferedImage> images = vista.getImages();
 
         // Verificar que todas las imágenes esperadas están cargadas
@@ -101,7 +101,7 @@ class TestVista {
     @Test
     @DisplayName("Test drawMatrizPix")
     void testDrawMatrizPix() {
-        Vista vista = new Vista(null); // Controlador es null porque no es necesario para esta prueba
+        Vista vista = new Vista(); 
         char[][] matriz = new char[][] {
             {' ', ' ', ' ', ' ', ' '},
             {' ', ' ', ' ', ' ', ' '},
@@ -120,7 +120,7 @@ class TestVista {
     @Test
     @DisplayName("Test pintar")
     void testPintar() throws FileNotFoundException, IncorrectLevelException {
-        Vista vista = new Vista(null); // Controlador es null porque no es necesario para esta prueba
+        Vista vista = new Vista();
         Partida partida = new Partida(new Nivel(1), 0, 1);
         vista.pintar(partida);
         // Verificar que se crearon los JLabels de nivel y puntos
