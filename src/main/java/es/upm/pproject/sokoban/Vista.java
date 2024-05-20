@@ -113,7 +113,8 @@ public class Vista extends JFrame {
         char[][] matriz = tab.getMatriz();
        
         // Actualizar el JLabel con el nivel actual
-        levelLabel.setText("Level: " + partida.getNumeroNivel());
+        // levelLabel.setText("Level: " + partida.getNumeroNivel());
+        levelLabel.setText(partida.getNivel().getTablero().getNombreNivel());
 
         int points = (int)partida.getPuntuacionAbsoluta();
         
@@ -138,8 +139,8 @@ public class Vista extends JFrame {
         
         // Agregar el panel al JFrame
         getContentPane().add(panel);
-        getContentPane().repaint();
-        getContentPane().revalidate();
+        repaint();
+        revalidate();
     }
 
     public JLabel getLevelLabel() {
