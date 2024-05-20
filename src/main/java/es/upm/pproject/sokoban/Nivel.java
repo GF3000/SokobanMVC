@@ -19,7 +19,6 @@ public class Nivel {
      * @throws IncorrectLevelException si el nivel no está bien formado
      */
     public Nivel(int numNivel) throws FileNotFoundException, IncorrectLevelException{
-        System.out.println(System.getProperty("user.dir"));
         tablero = new Tablero(String.format("./niveles/level_%d.txt", numNivel));
         puntuacionRelativa = 0;
         estadosAnteriores = new Stack<>();
