@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+
 public class Vista extends JFrame {
     private HashMap<String, BufferedImage> images; // set of images
     private int size = 64; // size of the tile
@@ -83,8 +84,8 @@ public class Vista extends JFrame {
             System.exit(-1);
         }
     }
-    
-    private void drawMatrizPix(char[][] matriz, Graphics g) {
+   
+    public void drawMatrizPix(char[][] matriz, Graphics g) {
         for (int y = 0; y < matriz.length; y++) {
             for (int x = 0; x < matriz[0].length; x++) {
                 // each elemnt has a different image associted so we have to get the image
@@ -131,7 +132,19 @@ public class Vista extends JFrame {
         // Agregar el panel al JFrame
         getContentPane().add(panel);
     }
-   
+
+    public JLabel getLevelLabel() {
+        return levelLabel;
+    }
+    
+    public JLabel getPointsLabel() {
+        return pointsLabel;
+    }
+    
+    public HashMap<String, BufferedImage> getImages() {
+        return images;
+    }
+  
     public static void main(String[] args) {
         try {
             Nivel n = new Nivel(1);
