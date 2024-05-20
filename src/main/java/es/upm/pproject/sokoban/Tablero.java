@@ -324,7 +324,7 @@ public class Tablero {
             i++;
         }
         LOGGER.debug("Fin comprobado: {}", fin);
-        return true;
+        return fin;
     }
 
     /**

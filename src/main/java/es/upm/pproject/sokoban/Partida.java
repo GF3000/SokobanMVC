@@ -1,8 +1,6 @@
 package es.upm.pproject.sokoban;
 
 import java.io.FileNotFoundException;
-
-import es.upm.pproject.sokoban.Nivel;
 import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
 public class Partida {
@@ -138,7 +136,9 @@ public class Partida {
             nivel.getEstadosAnteriores().add(nivel.getTablero().getMatriz());
             controlador.actualizarTablero();
             if (nivel.getTablero().comprobarFin()) {
+                System.out.println("mal");
                 // Espera 1000 ms antes de avanzar al siguiente nivel
+                
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
