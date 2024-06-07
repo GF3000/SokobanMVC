@@ -3,13 +3,26 @@ package es.upm.pproject.sokoban;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAccessType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
+
+@XmlRootElement(name = "tablero")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Tablero {
+    @XmlTransient
     private static final Logger LOGGER = LoggerFactory.getLogger(Tablero.class);
-    private char matriz[][];
+
+    @XmlElement
+    private char[][] matriz;
+
+    @XmlElement
     private String nombreNivel;
 
     /**

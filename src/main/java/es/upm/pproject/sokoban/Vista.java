@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class Vista extends JFrame {
     private HashMap<String, BufferedImage> images; // set of images
     private int size = 64; // size of the tile
-    private Controlador c; // creo que esto finalmente no hace falta aqui
+    private ControladorInterface c; // creo que esto finalmente no hace falta aqui
 
     // labels para nivel, puntos y total
     private JLabel levelLabel;
@@ -71,7 +71,7 @@ public class Vista extends JFrame {
         
     }
 
-    public void setControlador(Controlador c) {
+    public void setControlador(ControladorInterface c) {
         this.c = c;
     }
     // auxiliar method to get the images and associate them with the characters of the matrix that represent 
@@ -112,7 +112,7 @@ public class Vista extends JFrame {
         }
     }
 
-    public void pintar(Partida partida) {
+    public void pintar(PartidaInterface partida) {
         //borrar lo que habia antes de repintar
         getContentPane().removeAll();
 

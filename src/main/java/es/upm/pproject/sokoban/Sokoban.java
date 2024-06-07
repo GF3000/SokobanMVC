@@ -6,9 +6,9 @@ public class Sokoban {
     public static void main(String[] args) {
         try {
             Nivel n = new Nivel(1);
-            Partida p = new Partida(n,0,1);
+            PartidaInterface p = new Partida(n,0,1);
             Vista v = new Vista();
-            Controlador c = new Controlador(v, p);
+            ControladorInterface c = new Controlador(v, p);
             c.getPartida().setControlador(c);
             c.getVista().setControlador(c);
             

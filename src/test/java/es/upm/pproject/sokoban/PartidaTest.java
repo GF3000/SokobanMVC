@@ -13,9 +13,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import es.upm.pproject.sokoban.Nivel;
-import java.es.upm.pproject.sokoban.Controlador;
-import java.es.upm.pproject.sokoban.Partida;
-import java.es.upm.pproject.sokoban.Vista;
+import es.upm.pproject.sokoban.Controlador;
+import es.upm.pproject.sokoban.Partida;
+import es.upm.pproject.sokoban.Vista;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
