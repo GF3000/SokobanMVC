@@ -99,233 +99,104 @@ public class Tablero {
         return false;
     }
 
-    private boolean moverArriba(int personajeFila, int personajeColumna){
-        if(personajeFila == 0 || 
-           (personajeFila == 1 && 
-           (matriz[0][personajeColumna] == '#' || 
-           matriz[0][personajeColumna] == '_')) ||
-           (personajeFila > 1 && 
-           (matriz[personajeFila-1][personajeColumna] == '+' ||
-           (matriz[personajeFila-1][personajeColumna] == '#' || 
-           matriz[personajeFila-1][personajeColumna] == '_') && 
-           (matriz[personajeFila-2][personajeColumna] == '+' ||
-           matriz[personajeFila-2][personajeColumna] == '#' || 
-           matriz[personajeFila-2][personajeColumna] == '_')))){
+    private boolean moverArriba(int personajeFila, int personajeColumna) {
+        if (personajeFila <= 1 || 
+            (personajeFila == 2 && 
+            (matriz[0][personajeColumna] == '#' || 
+            matriz[0][personajeColumna] == '_'))) {
             return false;
-        }else{
-            if(matriz[personajeFila-1][personajeColumna] == ' '){
-                matriz[personajeFila-1][personajeColumna] = 'W';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila-1][personajeColumna] == '#'){
-                matriz[personajeFila-1][personajeColumna] = 'W';
-                if(matriz[personajeFila-2][personajeColumna] == '*'){
-                    matriz[personajeFila-2][personajeColumna] = '_';
-                }else{
-                    matriz[personajeFila-2][personajeColumna] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila-1][personajeColumna] == '_'){
-                matriz[personajeFila-1][personajeColumna] = '&';
-                if(matriz[personajeFila-2][personajeColumna] == '*'){
-                    matriz[personajeFila-2][personajeColumna] = '_';
-                }else{
-                    matriz[personajeFila-2][personajeColumna] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila-1][personajeColumna] == '*'){
-                matriz[personajeFila-1][personajeColumna] = '&';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }
         }
+        
+        char prevChar = matriz[personajeFila - 1][personajeColumna];
+        char prevPrevChar = matriz[personajeFila - 2][personajeColumna];
+        char currentChar = matriz[personajeFila][personajeColumna];
+        
+        if (prevChar == '+' || prevPrevChar == '+' || prevChar == ' ' || prevChar == '*') {
+            matriz[personajeFila - 1][personajeColumna] = currentChar == 'W' ? ' ' : 'W';
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        } else if (prevChar == '#' || prevChar == '_') {
+            char replaceChar = prevChar == '#' ? (prevPrevChar == '*' ? '_' : '#') : '&';
+            matriz[personajeFila - 1][personajeColumna] = 'W';
+            matriz[personajeFila - 2][personajeColumna] = replaceChar;
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        }
+        
         return true;
     }
+    
+    private boolean moverAbajo(int personajeFila, int personajeColumna) {
+        if (personajeFila >= matriz.length - 2 || 
+            (personajeFila == matriz.length - 3 && 
+            (matriz[matriz.length - 1][personajeColumna] == '#' || 
+            matriz[matriz.length - 1][personajeColumna] == '_'))) {
+            return false;
+        }
+        
+        char nextChar = matriz[personajeFila + 1][personajeColumna];
+        char nextNextChar = matriz[personajeFila + 2][personajeColumna];
+        char currentChar = matriz[personajeFila][personajeColumna];
+        
+        if (nextChar == '+' || nextNextChar == '+' || nextChar == ' ' || nextChar == '*') {
+            matriz[personajeFila + 1][personajeColumna] = currentChar == 'W' ? ' ' : 'W';
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        } else if (nextChar == '#' || nextChar == '_') {
+            char replaceChar = nextChar == '#' ? (nextNextChar == '*' ? '_' : '#') : '&';
+            matriz[personajeFila + 1][personajeColumna] = 'W';
+            matriz[personajeFila + 2][personajeColumna] = replaceChar;
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        }
+        
+        return true;
+    }
+    
 
-    private boolean moverAbajo(int personajeFila, int personajeColumna){
-        if(personajeFila == matriz[0].length-1 || 
-           personajeFila == matriz[0].length-2 && 
-           (matriz[matriz[0].length-1][personajeColumna] == '#' || 
-           matriz[matriz[0].length-1][personajeColumna] == '_') ||
-           (personajeFila < matriz[0].length-2 &&
-           (matriz[personajeFila+1][personajeColumna] == '+' ||
-           (matriz[personajeFila+1][personajeColumna] == '#' || 
-           matriz[personajeFila+1][personajeColumna] == '_') && 
-           (matriz[personajeFila+2][personajeColumna] == '+' ||
-           matriz[personajeFila+2][personajeColumna] == '#' || 
-           matriz[personajeFila+2][personajeColumna] == '_')))){
+    private boolean moverIzquierda(int personajeFila, int personajeColumna) {
+        if (personajeColumna <= 1 || 
+            (personajeColumna == 2 && 
+            (matriz[personajeFila][0] == '#' || 
+            matriz[personajeFila][0] == '_'))) {
             return false;
-        }else{
-            if(matriz[personajeFila+1][personajeColumna] == ' '){
-                matriz[personajeFila+1][personajeColumna] = 'W';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila+1][personajeColumna] == '#'){
-                matriz[personajeFila+1][personajeColumna] = 'W';
-                if(matriz[personajeFila+2][personajeColumna] == '*'){
-                    matriz[personajeFila+2][personajeColumna] = '_';
-                }else{
-                    matriz[personajeFila+2][personajeColumna] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila+1][personajeColumna] == '_'){
-                matriz[personajeFila+1][personajeColumna] = '&';
-                if(matriz[personajeFila+2][personajeColumna] == '*'){
-                    matriz[personajeFila+2][personajeColumna] = '_';
-                }else{
-                    matriz[personajeFila+2][personajeColumna] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila+1][personajeColumna] == '*'){
-                matriz[personajeFila+1][personajeColumna] = '&';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }
         }
+        
+        char prevChar = matriz[personajeFila][personajeColumna - 1];
+        char prevPrevChar = matriz[personajeFila][personajeColumna - 2];
+        char currentChar = matriz[personajeFila][personajeColumna];
+        
+        if (prevChar == '+' || prevPrevChar == '+' || prevChar == ' ' || prevChar == '*') {
+            matriz[personajeFila][personajeColumna - 1] = currentChar == 'W' ? ' ' : 'W';
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        } else if (prevChar == '#' || prevChar == '_') {
+            char replaceChar = prevChar == '#' ? (prevPrevChar == '*' ? '_' : '#') : '&';
+            matriz[personajeFila][personajeColumna - 1] = 'W';
+            matriz[personajeFila][personajeColumna - 2] = replaceChar;
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        }
+        
         return true;
     }
-
-    private boolean moverIzquierda(int personajeFila, int personajeColumna){
-        if(personajeColumna == 0 || 
-           (personajeColumna == 1 && 
-           (matriz[personajeFila][0] == '#' || 
-           matriz[personajeFila][0] == '_')) ||
-           (personajeColumna > 1 && 
-           (matriz[personajeFila][personajeColumna-1] == '+' ||
-           (matriz[personajeFila][personajeColumna-1] == '#' || 
-           matriz[personajeFila][personajeColumna-1] == '_') && 
-           (matriz[personajeFila][personajeColumna-2] == '+' ||
-           matriz[personajeFila][personajeColumna-2] == '#' || 
-           matriz[personajeFila][personajeColumna-2] == '_')))){
+    
+    private boolean moverDerecha(int personajeFila, int personajeColumna) {
+        if (personajeColumna >= matriz.length - 2) {
             return false;
-        }else{
-            if(matriz[personajeFila][personajeColumna-1] == ' '){
-                matriz[personajeFila][personajeColumna-1] = 'W';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila][personajeColumna-1] == '#'){
-                matriz[personajeFila][personajeColumna-1] = 'W';
-                if(matriz[personajeFila][personajeColumna-2] == '*'){
-                    matriz[personajeFila][personajeColumna-2] = '_';
-                }else{
-                    matriz[personajeFila][personajeColumna-2] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila][personajeColumna-1] == '_'){
-                matriz[personajeFila][personajeColumna-1] = '&';
-                if(matriz[personajeFila][personajeColumna-2] == '*'){
-                    matriz[personajeFila][personajeColumna-2] = '_';
-                }else{
-                    matriz[personajeFila][personajeColumna-2] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila][personajeColumna-1] == '*'){
-                matriz[personajeFila][personajeColumna-1] = '&';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }
         }
+        
+        char nextChar = matriz[personajeFila][personajeColumna + 1];
+        char nextNextChar = matriz[personajeFila][personajeColumna + 2];
+        char currentChar = matriz[personajeFila][personajeColumna];
+        
+        if (nextChar == '+' || nextNextChar == '+' || nextChar == ' ' || nextChar == '*') {
+            matriz[personajeFila][personajeColumna + 1] = currentChar == 'W' ? ' ' : 'W';
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        } else if (nextChar == '#' || nextChar == '_') {
+            char replaceChar = nextChar == '#' ? (nextNextChar == '*' ? '_' : '#') : '&';
+            matriz[personajeFila][personajeColumna + 1] = 'W';
+            matriz[personajeFila][personajeColumna + 2] = replaceChar;
+            matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
+        }
+        
         return true;
     }
-
-    private boolean moverDerecha(int personajeFila, int personajeColumna){
-        if(personajeColumna == matriz.length-1 || 
-            personajeColumna == matriz.length-2 && 
-           (matriz[personajeFila][matriz.length-1] == '#' || 
-           matriz[personajeFila][matriz.length-1] == '_') ||
-           (personajeColumna < matriz.length-2 &&
-           (matriz[personajeFila][personajeColumna+1] == '+' ||
-           (matriz[personajeFila][personajeColumna+1] == '#' || 
-           matriz[personajeFila][personajeColumna+1] == '_') && 
-           (matriz[personajeFila][personajeColumna+2] == '+' ||
-           matriz[personajeFila][personajeColumna+2] == '#' || 
-           matriz[personajeFila][personajeColumna+2] == '_')))){
-            return false;
-        }else{
-            if(matriz[personajeFila][personajeColumna+1] == ' '){
-                matriz[personajeFila][personajeColumna+1] = 'W';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila][personajeColumna+1] == '#'){
-                matriz[personajeFila][personajeColumna+1] = 'W';
-                if(matriz[personajeFila][personajeColumna+2] == '*'){
-                    matriz[personajeFila][personajeColumna+2] = '_';
-                }else{
-                    matriz[personajeFila][personajeColumna+2] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila][personajeColumna+1] == '_'){
-                matriz[personajeFila][personajeColumna+1] = '&';
-                if(matriz[personajeFila][personajeColumna+2] == '*'){
-                    matriz[personajeFila][personajeColumna+2] = '_';
-                }else{
-                    matriz[personajeFila][personajeColumna+2] = '#';
-                }
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }else if(matriz[personajeFila][personajeColumna+1] == '*'){
-                matriz[personajeFila][personajeColumna+1] = '&';
-                if(matriz[personajeFila][personajeColumna] == 'W'){
-                    matriz[personajeFila][personajeColumna] = ' ';
-                }else{
-                    matriz[personajeFila][personajeColumna] = '*';
-                }
-            }
-        }
-        return true;
-    }
+    
     /**
      * Comprueba si se ha llegado al estado final
      * @return true si se ha alcanzado el estado final o false en caso contrario
