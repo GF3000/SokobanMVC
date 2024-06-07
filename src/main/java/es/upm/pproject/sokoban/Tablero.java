@@ -317,9 +317,10 @@ public class Tablero {
         while(i<matriz.length && fin){
             j = 0;
             while(j<matriz[0].length && fin){
-                if(matriz[i][j++] == '*' || matriz[i][j++] == '&'){
+                if(matriz[i][j] == '*' || matriz[i][j] == '&'){
                     fin = false;
                 }
+                j++;
             }
             i++;
         }
