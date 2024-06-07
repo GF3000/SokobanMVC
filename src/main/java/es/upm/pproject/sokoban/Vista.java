@@ -112,7 +112,7 @@ public class Vista extends JFrame {
         }
     }
 
-    public void pintar(Partida partida) {
+    public void pintar(PartidaInterface partida) {
         //borrar lo que habia antes de repintar
         getContentPane().removeAll();
 

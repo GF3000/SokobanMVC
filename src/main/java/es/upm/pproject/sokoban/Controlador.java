@@ -14,7 +14,7 @@ package es.upm.pproject.sokoban;
  */
 public class Controlador {
 
-    private static Partida partida;
+    private static PartidaInterface partida;
     private Vista vista;
 
     /**
@@ -22,7 +22,7 @@ public class Controlador {
      * @param vista
      * @param partida
      */
-    public Controlador(Vista vista, Partida partida) {
+    public Controlador(Vista vista, PartidaInterface partida) {
         this.vista = vista;
         this.partida = partida;
     }
@@ -32,7 +32,7 @@ public class Controlador {
         return vista;
     }
     //getPartida
-    public Partida getPartida() {
+    public PartidaInterface getPartida() {
         return partida;
     }
 
