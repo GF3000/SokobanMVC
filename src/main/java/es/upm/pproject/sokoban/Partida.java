@@ -3,86 +3,14 @@ package es.upm.pproject.sokoban;
 import java.io.FileNotFoundException;
 import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
-public class Partida {
+public class Partida implements PartidaInterface{
 
     private Nivel nivel;
     private int puntuacionAbsoluta;
     private int numeroNivel;
     private Controlador controlador;
 
-    /**
-     * Obtiene el controlador de la partida.
-     * 
-     * @return el controlador de la partida
-     */
-    public Controlador getControlador() {
-        return controlador;
-    }
-
-    /**
-     * Establece el controlador de la partida.
-     * 
-     * @param controlador el controlador a establecer
-     */
-    public void setControlador(Controlador controlador) {
-        this.controlador = controlador;
-    }
-
-    /**
-     * Obtiene el nivel actual de la partida.
-     * 
-     * @return el nivel actual
-     */
-    public Nivel getNivel() {
-        return nivel;
-    }
-
-    /**
-     * Establece el nivel de la partida.
-     * 
-     * @param nivel el nivel a establecer
-     */
-    public void setNivel(Nivel nivel) {
-        this.nivel = nivel;
-    }
-
-    /**
-     * Obtiene la puntuacion absoluta de la partida.
-     * 
-     * @return la puntuacion absoluta
-     */
-    public int getPuntuacionAbsoluta() {
-        return puntuacionAbsoluta;
-    }
-
-    /**
-     * Establece la puntuacion absoluta de la partida.
-     * 
-     * @param puntuacionAbsoluta la puntuacion absoluta a establecer
-     */
-    public void setPuntuacionAbsoluta(int puntuacionAbsoluta) {
-        this.puntuacionAbsoluta = puntuacionAbsoluta;
-    }
-
-    /**
-     * Obtiene el número del nivel actual.
-     * 
-     * @return el número del nivel actual
-     */
-    public int getNumeroNivel() {
-        return numeroNivel;
-    }
-
-    /**
-     * Establece el número del nivel actual.
-     * 
-     * @param numeroNivel el número del nivel a establecer
-     */
-    public void setNumeroNivel(int numeroNivel) {
-        this.numeroNivel = numeroNivel;
-    }
-
-    /**
+     /**
      * Constructor de la clase Partida.
      * 
      * @param nivel el nivel inicial de la partida
@@ -110,11 +38,49 @@ public class Partida {
         this.numeroNivel = numeroNivel;
     }
 
-    /**
-     * Avanza al siguiente nivel de la partida.
-     * 
-     * @return true si el nivel fue incrementado exitosamente
-     */
+    @Override
+    public Controlador getControlador() {
+        return controlador;
+    }
+
+    @Override
+    public void setControlador(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    @Override
+    public Nivel getNivel() {
+        return nivel;
+    }
+
+    @Override
+    public void setNivel(Nivel nivel) {
+        this.nivel = nivel;
+    }
+
+    @Override
+    public int getPuntuacionAbsoluta() {
+        return puntuacionAbsoluta;
+    }
+
+    @Override
+    public void setPuntuacionAbsoluta(int puntuacionAbsoluta) {
+        this.puntuacionAbsoluta = puntuacionAbsoluta;
+    }
+
+    @Override
+    public int getNumeroNivel() {
+        return numeroNivel;
+    }
+
+    @Override
+    public void setNumeroNivel(int numeroNivel) {
+        this.numeroNivel = numeroNivel;
+    }
+
+   
+
+    @Override
     public boolean siguienteNivel() {
         try{
             nivel = new Nivel(++numeroNivel);
@@ -125,12 +91,7 @@ public class Partida {
 
     }
 
-    /**
-     * Mueve el personaje en la dirección especificada.
-     * 
-     * @param direccion la dirección en la que se debe mover el personaje ('W', 'A', 'S', 'D' para arriba, izquierda, abajo, derecha respectivamente)
-     * @throws InterruptedException 
-     */
+    @Override
     public void mover(char direccion) throws InterruptedException {
         if (nivel.getTablero().mover(direccion)) {
             nivel.getEstadosAnteriores().add(nivel.getTablero().getMatriz());
@@ -151,5 +112,11 @@ public class Partida {
                     controlador.finPartida();
             }
         }
+    }
+
+    @Override
+    public void reiniciar() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'reiniciar'");
     }
 }
