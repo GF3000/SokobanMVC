@@ -1,16 +1,21 @@
 package es.upm.pproject.sokoban;
 
 import java.io.FileNotFoundException;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
-public class Partida implements PartidaInterface{
+@XmlRootElement(name = "partida")
+public class Partida implements PartidaInterface {
 
     private Nivel nivel;
     private int puntuacionAbsoluta;
     private int numeroNivel;
     private ControladorInterface controlador;
 
-     /**
+    /**
      * Constructor de la clase Partida.
      * 
      * @param nivel el nivel inicial de la partida
@@ -38,7 +43,12 @@ public class Partida implements PartidaInterface{
         this.numeroNivel = numeroNivel;
     }
 
+    // Constructor sin parámetros requerido por JAXB
+    public Partida() {
+    }
+
     @Override
+    @XmlTransient
     public ControladorInterface getControlador() {
         return controlador;
     }
@@ -49,6 +59,7 @@ public class Partida implements PartidaInterface{
     }
 
     @Override
+    @XmlElement
     public Nivel getNivel() {
         return nivel;
     }
@@ -59,6 +70,7 @@ public class Partida implements PartidaInterface{
     }
 
     @Override
+    @XmlElement
     public int getPuntuacionAbsoluta() {
         return puntuacionAbsoluta;
     }
@@ -69,6 +81,7 @@ public class Partida implements PartidaInterface{
     }
 
     @Override
+    @XmlElement
     public int getNumeroNivel() {
         return numeroNivel;
     }
@@ -78,17 +91,14 @@ public class Partida implements PartidaInterface{
         this.numeroNivel = numeroNivel;
     }
 
-   
-
     @Override
     public boolean siguienteNivel() {
-        try{
+        try {
             nivel = new Nivel(++numeroNivel);
             return true;
-        }catch(FileNotFoundException | IncorrectLevelException e){
+        } catch (FileNotFoundException | IncorrectLevelException e) {
             return false;
         }
-
     }
 
     @Override
@@ -99,7 +109,6 @@ public class Partida implements PartidaInterface{
             if (nivel.getTablero().comprobarFin()) {
                 System.out.println("mal");
                 // Espera 1000 ms antes de avanzar al siguiente nivel
-                
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
