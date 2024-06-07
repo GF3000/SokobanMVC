@@ -25,10 +25,18 @@ public class Vista extends JFrame {
     private JLabel levelLabel;
     private JLabel pointsLabel;
 
+    /**
+     * Constructor de la clase Vista
+     */
+
     public Vista() {
 
         images = new HashMap<String, BufferedImage>();
-        loadImages();
+        try {
+            loadImages();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // establecer fondo a color
         getContentPane().setBackground(Color.gray);
         setTitle("Sokoban");
@@ -76,7 +84,7 @@ public class Vista extends JFrame {
     }
     // auxiliar method to get the images and associate them with the characters of the matrix that represent 
     // different elements of the game
-    private void loadImages() {
+    private void loadImages() throws Exception{
         // reminder of the symbols used
         // + : Wall
         // . : Empty square // tambien " "
@@ -94,7 +102,8 @@ public class Vista extends JFrame {
             images.put("*", ImageIO.read(getClass().getResource("./images/sueloPunto2.png")));
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(-1);
+            // System.exit(-1);
+            
         }
     }
    

@@ -38,7 +38,7 @@ public class PartidaTest {
     
     private Partida partida;
     private Nivel nivel;
-    Vista vista = new Vista();
+    private Vista vista;
     private Controlador controlador;
     
     @BeforeEach

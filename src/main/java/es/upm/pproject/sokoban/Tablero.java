@@ -25,6 +25,10 @@ public class Tablero {
     @XmlElement
     private String nombreNivel;
 
+    // Constructor sin parámetros requerido por JAXB
+    public Tablero() {
+    }
+
     /**
      * Constructor de la clase Tablero
      * @param source 
@@ -45,6 +49,8 @@ public class Tablero {
             LOGGER.debug("Nuevo tablero {} creado", this);
         }
     }
+
+
 
     /**
      * Comprueba que el nivel está bien formado
@@ -374,6 +380,14 @@ public class Tablero {
      */
     public String toString(){
         String s = nombreNivel+"\n";
+        if (matriz == null) {
+            // LOGGER.debug("Matriz de Tablero {} es null", this);
+            return s;
+        }
+        if (matriz.length == 0) {
+            // LOGGER.debug("Matriz de Tablero {} está vacía", this);
+            return s;
+        }
         for(int i = 0; i<matriz[0].length; i++){
             for(int j = 0; j<matriz.length; j++){
                 s += matriz[i][j];
