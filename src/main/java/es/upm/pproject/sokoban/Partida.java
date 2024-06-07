@@ -8,7 +8,7 @@ public class Partida implements PartidaInterface{
     private Nivel nivel;
     private int puntuacionAbsoluta;
     private int numeroNivel;
-    private Controlador controlador;
+    private ControladorInterface controlador;
 
      /**
      * Constructor de la clase Partida.
@@ -39,12 +39,12 @@ public class Partida implements PartidaInterface{
     }
 
     @Override
-    public Controlador getControlador() {
+    public ControladorInterface getControlador() {
         return controlador;
     }
 
     @Override
-    public void setControlador(Controlador controlador) {
+    public void setControlador(ControladorInterface controlador) {
         this.controlador = controlador;
     }
 

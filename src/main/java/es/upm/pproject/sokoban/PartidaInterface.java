@@ -7,14 +7,14 @@ public interface PartidaInterface {
      * 
      * @return el controlador de la partida
      */
-    public Controlador getControlador();
+    public ControladorInterface getControlador();
 
     /**
      * Establece el controlador de la partida.
      * 
      * @param controlador el controlador a establecer
      */
-    public void setControlador(Controlador controlador);
+    public void setControlador(ControladorInterface controlador);
 
     /**
      * Obtiene el nivel actual de la partida.
