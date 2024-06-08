@@ -107,7 +107,6 @@ public class Partida implements PartidaInterface {
             nivel.getEstadosAnteriores().add(nivel.getTablero().getMatriz());
             controlador.actualizarTablero();
             if (nivel.getTablero().comprobarFin()) {
-                System.out.println("mal");
                 // Espera 1000 ms antes de avanzar al siguiente nivel
                 try {
                     Thread.sleep(1000);
