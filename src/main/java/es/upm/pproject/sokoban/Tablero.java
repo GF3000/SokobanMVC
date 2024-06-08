@@ -57,7 +57,8 @@ public class Tablero {
      * @return true si el nivel está bien formado y false en caso contrario
      */
     private boolean nivelCorrecto(){
-        int nCajas = 0, nEndPoints = 0;
+        int nCajas = 0;
+        int nEndPoints = 0;
         for(int i = 0; i<matriz[0].length; i++){
             for(int j = 0; j<matriz.length; j++){
                 if(matriz[i][j] == '*') nEndPoints++;
@@ -76,7 +77,8 @@ public class Tablero {
      */
     public boolean mover(char direccion){
         boolean movimientoRealizado = false;
-        int personajeFila = 0, personajeColumna = 0; 
+        int personajeFila = 0;
+        int personajeColumna = 0; 
         for(int i = 0; i<matriz[0].length; i++){
             for(int j = 0; j<matriz.length; j++){
                 if(matriz[i][j] == 'W' || matriz[i][j] == '&'){
@@ -90,6 +92,7 @@ public class Tablero {
             case 'd': movimientoRealizado = moverAbajo(personajeFila, personajeColumna); break;
             case 'l': movimientoRealizado = moverIzquierda(personajeFila, personajeColumna); break;
             case 'r': movimientoRealizado = moverDerecha(personajeFila, personajeColumna); break;
+            default: break;
         }
         if(movimientoRealizado){
             LOGGER.debug("Movimiento {} realizado", direccion);
@@ -222,7 +225,7 @@ public class Tablero {
      * Setter del atributo matriz
      * @param matriz 
      */
-    public void setMatriz(char matriz[][]){
+    public void setMatriz(char[][] matriz){
         this.matriz = matriz;
         LOGGER.debug("Matriz de Tablero {} modificada mediante el setter", this);
     }
@@ -252,11 +255,9 @@ public class Tablero {
     public String toString(){
         String s = nombreNivel+"\n";
         if (matriz == null) {
-            // LOGGER.debug("Matriz de Tablero {} es null", this);
             return s;
         }
         if (matriz.length == 0) {
-            // LOGGER.debug("Matriz de Tablero {} está vacía", this);
             return s;
         }
         for(int i = 0; i<matriz[0].length; i++){
