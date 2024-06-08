@@ -10,7 +10,7 @@ import java.util.Deque;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class TestsNivel {
+class NivelTest {
     @Test
     @DisplayName("Test Constructor: nivel no existe") 
     void test1(){

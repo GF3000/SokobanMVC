@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class TestsTablero {
+class TableroTest {
     @Test
     @DisplayName("Test Constructor: nivel no existe") 
     void test1(){
