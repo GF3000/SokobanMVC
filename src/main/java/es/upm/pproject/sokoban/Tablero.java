@@ -59,8 +59,8 @@ public class Tablero {
     private boolean nivelCorrecto(){
         int nCajas = 0;
         int nEndPoints = 0;
-        for(int i = 0; i<matriz[0].length; i++){
-            for(int j = 0; j<matriz.length; j++){
+        for(int i = 0; i<matriz.length; i++){
+            for(int j = 0; j<matriz[0].length; j++){
                 if(matriz[i][j] == '*') nEndPoints++;
                 else if(matriz[i][j] == '#') nCajas++;
                 else if(matriz[i][j] == '_'){ nEndPoints++; nCajas++;}
@@ -79,8 +79,8 @@ public class Tablero {
         boolean movimientoRealizado = false;
         int personajeFila = 0;
         int personajeColumna = 0; 
-        for(int i = 0; i<matriz[0].length; i++){
-            for(int j = 0; j<matriz.length; j++){
+        for(int i = 0; i<matriz.length; i++){
+            for(int j = 0; j<matriz[0].length; j++){
                 if(matriz[i][j] == 'W' || matriz[i][j] == '&'){
                     personajeFila = i;
                     personajeColumna = j;
@@ -390,8 +390,8 @@ public class Tablero {
         if (matriz.length == 0) {
             return s;
         }
-        for(int i = 0; i<matriz[0].length; i++){
-            for(int j = 0; j<matriz.length; j++){
+        for(int i = 0; i<matriz.length; i++){
+            for(int j = 0; j<matriz[0].length; j++){
                 s += matriz[i][j];
             }
             s += '\n';

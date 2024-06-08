@@ -1,38 +1,10 @@
 package es.upm.pproject.sokoban;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.io.FileNotFoundException;
-import java.util.Stack;
-
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import es.upm.pproject.sokoban.Nivel;
-import es.upm.pproject.sokoban.Controlador;
-import es.upm.pproject.sokoban.Partida;
-import es.upm.pproject.sokoban.Vista;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
-
-
-
-
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 
 public class PartidaTest {
     
@@ -121,7 +93,7 @@ public class PartidaTest {
     public void testSiguienteNivel() {
         //Assert False partida.siguienteNivel
         
-        assertFalse(partida.siguienteNivel());
+        assertTrue(partida.siguienteNivel());
         assertEquals(2, partida.getNumeroNivel());
     }
     
