@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import es.upm.pproject.sokoban.PartidaInterface;
-import es.upm.pproject.sokoban.Tablero;
+import es.upm.pproject.sokoban.TableroInterface;
 import es.upm.pproject.sokoban.controller.ControladorInterface;
 
 
@@ -130,7 +130,7 @@ public class Vista extends JFrame {
         getContentPane().removeAll();
 
         // necesitamos la matriz de tablero para dibujarla
-        Tablero tab = partida.getNivel().getTablero();
+        TableroInterface tab = partida.getNivel().getTablero();
         // System.out.println(tab.toString());
         char[][] matriz = tab.getMatriz();
        

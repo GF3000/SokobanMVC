@@ -16,12 +16,12 @@ import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
 @XmlRootElement(name = "nivel")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Nivel {
+public class Nivel implements NivelInterface{
     @XmlTransient
     private static final Logger LOGGER = LoggerFactory.getLogger(Nivel.class);
 
     @XmlElement
-    private Tablero tablero;
+    private TableroInterface tablero;
 
     @XmlElement
     private int puntuacionRelativa;
@@ -49,44 +49,31 @@ public class Nivel {
         LOGGER.debug("Nuevo nivel {} creado", this);
     }
 
-    /**
-     * Getter del atributo puntuacionRelativa
-     * @return puntuacionRelativa
-     */
+    @Override
     public int getPuntuacionRelativa() {
         LOGGER.debug("Puntuación relativa de Nivel {} obtenida", this);
         return puntuacionRelativa;
     }
 
-    /**
-     * Getter del atributo tablero
-     * @return tablero
-     */
-    public Tablero getTablero() {
+    @Override
+    public TableroInterface getTablero() {
         LOGGER.debug("Tablero de Nivel {} obtenido", this);
         return tablero;
     }
 
-    /**
-     * Getter del atributo estadosAnteriores
-     * @return estadosAnteriores
-     */
+    @Override
     public Deque<char[][]> getEstadosAnteriores() {
         LOGGER.debug("Estados anteriores de Nivel {} obtenidos", this);
         return estadosAnteriores;
     }
 
-    /**
-     * Deshace el último movimiento y vuelve a un estado anterior
-     */
+    @Override
     public void deshacer() {
         tablero.setMatriz(estadosAnteriores.pop()); 
         LOGGER.debug("Matriz de Nivel {} devuelta a estado anterior", this);
     }
 
-    /**
-     * Incrementa la puntuacion relativa
-     */
+    @Override
     public void incremetarPuntuacionRelativa() {
         puntuacionRelativa++;
         LOGGER.debug("Puntuación relativa de Nivel {} incrementada", this);

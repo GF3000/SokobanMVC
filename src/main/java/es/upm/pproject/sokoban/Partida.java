@@ -12,7 +12,7 @@ import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 @XmlRootElement(name = "partida")
 public class Partida implements PartidaInterface {
 
-    private Nivel nivel;
+    private NivelInterface nivel;
     private int puntuacionAbsoluta;
     private int numeroNivel;
     private ControladorInterface controlador;
@@ -62,7 +62,7 @@ public class Partida implements PartidaInterface {
 
     @Override
     @XmlElement
-    public Nivel getNivel() {
+    public NivelInterface getNivel() {
         return nivel;
     }
 

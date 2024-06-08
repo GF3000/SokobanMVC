@@ -15,7 +15,7 @@ import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
 @XmlRootElement(name = "tablero")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Tablero {
+public class Tablero implements TableroInterface{
     @XmlTransient
     private static final Logger LOGGER = LoggerFactory.getLogger(Tablero.class);
 
@@ -50,13 +50,8 @@ public class Tablero {
         }
     }
 
-
-
-    /**
-     * Comprueba que el nivel está bien formado
-     * @return true si el nivel está bien formado y false en caso contrario
-     */
-    private boolean nivelCorrecto(){
+    @Override
+    public boolean nivelCorrecto(){
         int nCajas = 0;
         int nEndPoints = 0;
         for(int i = 0; i<matriz.length; i++){
@@ -70,11 +65,7 @@ public class Tablero {
         return nCajas != 0 && nCajas == nEndPoints;
     }
 
-    /**
-     * Ejecuta un movimiento
-     * @param direccion
-     * @return true si se ha podido realizar el movimiento o false en caso contrario
-     */
+    @Override
     public boolean mover(char direccion){
         boolean movimientoRealizado = false;
         int personajeFila = 0;
@@ -330,10 +321,7 @@ public class Tablero {
         return true;
     }
     
-    /**
-     * Comprueba si se ha llegado al estado final
-     * @return true si se ha alcanzado el estado final o false en caso contrario
-     */
+    @Override
     public boolean comprobarFin(){
         boolean fin = true;
         int j;
@@ -352,37 +340,25 @@ public class Tablero {
         return fin;
     }
 
-    /**
-     * Setter del atributo matriz
-     * @param matriz 
-     */
+    @Override
     public void setMatriz(char[][] matriz){
         this.matriz = matriz;
         LOGGER.debug("Matriz de Tablero {} modificada mediante el setter", this);
     }
 
-    /**
-     * Getter del atributo matriz
-     * @return matriz
-     */
+    @Override
     public char[][] getMatriz(){
         LOGGER.debug("Matriz de tablero {} obtenida", this);
         return matriz;
     }
 
-    /**
-     * Getter del atributo nombreNivel
-     * @return nombreNivel
-     */
+    @Override
     public String getNombreNivel(){
         LOGGER.debug("Nombre de nivel de tablero {} obtenido", this);
         return nombreNivel;
     }
 
-    /**
-     * Transforma la información del tablero a formato String
-     * @return tablero en formato String
-     */
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append(nombreNivel+"\n");

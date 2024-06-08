@@ -23,7 +23,7 @@ public interface PartidaInterface {
      * 
      * @return el nivel actual
      */
-    public Nivel getNivel();
+    public NivelInterface getNivel();
 
     /**
      * Establece el nivel de la partida.
@@ -81,8 +81,4 @@ public interface PartidaInterface {
      * Reiniciar el nivelOv
      */
     void reiniciar();
-
-
-
-    
 }
