@@ -1,7 +1,8 @@
 package es.upm.pproject.sokoban;
 
 import java.io.FileNotFoundException;
-import java.util.Stack;
+import java.util.Deque;
+import java.util.LinkedList;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -27,11 +28,11 @@ public class Nivel {
 
     @XmlElementWrapper(name = "estadosAnteriores")
     @XmlElement(name = "estado")
-    private Stack<char[][]> estadosAnteriores;
+    private Deque<char[][]> estadosAnteriores;
 
     // Constructor sin parámetros requerido por JAXB
     public Nivel() {
-        this.estadosAnteriores = new Stack<>();
+        this.estadosAnteriores = new LinkedList<>();
     }
 
     /**
@@ -43,7 +44,7 @@ public class Nivel {
     public Nivel(int numNivel) throws FileNotFoundException, IncorrectLevelException {
         tablero = new Tablero(String.format("./niveles/level_%d.txt", numNivel));
         puntuacionRelativa = 0;
-        estadosAnteriores = new Stack<>();
+        estadosAnteriores = new LinkedList<>();
         estadosAnteriores.add(tablero.getMatriz());
         LOGGER.debug("Nuevo nivel {} creado", this);
     }
@@ -70,7 +71,7 @@ public class Nivel {
      * Getter del atributo estadosAnteriores
      * @return estadosAnteriores
      */
-    public Stack<char[][]> getEstadosAnteriores() {
+    public Deque<char[][]> getEstadosAnteriores() {
         LOGGER.debug("Estados anteriores de Nivel {} obtenidos", this);
         return estadosAnteriores;
     }

@@ -9,6 +9,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.FileNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class TestsTablero {
     @Test
@@ -52,7 +54,7 @@ class TestsTablero {
     void test6() throws Exception{
         Tablero tablero = new Tablero("./niveles/level_1.txt");
         tablero.setMatriz(new char[0][0]);
-        assertTrue(tablero.getMatriz().length == 0);
+        assertEquals(0, tablero.getMatriz().length);
     }
 
     @Test
@@ -430,108 +432,34 @@ class TestsTablero {
                      "  #  \n", tablero.toString());
     }
 
-    @Test
-    @DisplayName("Test mover: W arriba hacia pared (correcto)") 
-    void test40() throws Exception{
+    @ParameterizedTest
+    @CsvSource({
+        "'Test mover: W arriba hacia pared (correcto)', 'u'",
+        "'Test mover: W izquierda hacia pared (correcto)', 'l'",
+        "'Test mover: W derecha hacia pared (correcto)', 'r'",
+        "'Test mover: W abajo hacia pared (correcto)', 'd'"
+    })
+    void test40(String displayName, char movimiento) throws Exception {
         Tablero tablero = new Tablero("./niveles/level_415.txt");
-        assertFalse(tablero.mover('u'));
-        assertEquals(tablero.getNombreNivel()+ "\n"+
-                     "     \n" + //
+        assertFalse(tablero.mover(movimiento));
+        assertEquals(tablero.getNombreNivel() + "\n" +
+                     "     \n" + // 
                      "  +  \n" + //
                      " +W+ \n" + //
                      "  +  \n" + //
                      "   #*\n", tablero.toString());
     }
 
-    @Test
-    @DisplayName("Test mover: W izquierda hacia pared (correcto)") 
-    void test41() throws Exception{
-        Tablero tablero = new Tablero("./niveles/level_415.txt");
-        assertFalse(tablero.mover('l'));
-        assertEquals(tablero.getNombreNivel()+ "\n"+
-                     "     \n" + //
-                     "  +  \n" + //
-                     " +W+ \n" + //
-                     "  +  \n" + //
-                     "   #*\n", tablero.toString());
-    }
-
-    @Test
-    @DisplayName("Test mover: W derecha hacia pared (correcto)") 
-    void test42() throws Exception{
-        Tablero tablero = new Tablero("./niveles/level_415.txt");
-        assertFalse(tablero.mover('r'));
-        assertEquals(tablero.getNombreNivel()+ "\n"+
-                     "     \n" + //
-                     "  +  \n" + //
-                     " +W+ \n" + //
-                     "  +  \n" + //
-                     "   #*\n", tablero.toString());
-    }
-
-    @Test
-    @DisplayName("Test mover: W abajo hacia pared (correcto)") 
-    void test43() throws Exception{
-        Tablero tablero = new Tablero("./niveles/level_415.txt");
-        assertFalse(tablero.mover('d'));
-        assertEquals(tablero.getNombreNivel()+ "\n"+
-                     "     \n" + //
-                     "  +  \n" + //
-                     " +W+ \n" + //
-                     "  +  \n" + //
-                     "   #*\n", tablero.toString());
-    }
-
-    @Test
-    @DisplayName("Test mover: W arriba empuja caja inmovilizada por pared (correcto)") 
-    void test44() throws Exception{
+    @ParameterizedTest
+    @CsvSource({
+        "'Test mover: W arriba empuja caja inmovilizada por pared (correcto)', 'u'",
+        "'Test mover: W izquierda empuja caja inmovilizada por pared (correcto)', 'l'",
+        "'Test mover: W derecha empuja caja inmovilizada por pared (correcto)', 'r'",
+        "'Test mover: W abajo empuja caja inmovilizada por pared (correcto)', 'd'"
+    })
+    void test41(String displayName, char movimiento) throws Exception{
         Tablero tablero = new Tablero("./niveles/level_416.txt");
-        assertFalse(tablero.mover('u'));
-        assertEquals(tablero.getNombreNivel()+ "\n"+
-                     "   *   \n" + //
-                     "   +   \n" + //
-                     "   #   \n" + //
-                     "*+#W#+*\n" + //
-                     "   #   \n" + //
-                     "   +   \n" + //
-                     "   *   \n", tablero.toString());
-    }
-
-    @Test
-    @DisplayName("Test mover: W izquierda empuja caja inmovilizada por pared (correcto)") 
-    void test45() throws Exception{
-        Tablero tablero = new Tablero("./niveles/level_416.txt");
-        assertFalse(tablero.mover('l'));
-        assertEquals(tablero.getNombreNivel()+ "\n"+
-                     "   *   \n" + //
-                     "   +   \n" + //
-                     "   #   \n" + //
-                     "*+#W#+*\n" + //
-                     "   #   \n" + //
-                     "   +   \n" + //
-                     "   *   \n", tablero.toString());
-    }
-
-    @Test
-    @DisplayName("Test mover: W derecha empuja caja inmovilizada por pared (correcto)") 
-    void test46() throws Exception{
-        Tablero tablero = new Tablero("./niveles/level_416.txt");
-        assertFalse(tablero.mover('r'));
-        assertEquals(tablero.getNombreNivel()+ "\n"+
-                     "   *   \n" + //
-                     "   +   \n" + //
-                     "   #   \n" + //
-                     "*+#W#+*\n" + //
-                     "   #   \n" + //
-                     "   +   \n" + //
-                     "   *   \n", tablero.toString());
-    }
-
-    @Test
-    @DisplayName("Test mover: W abajo empuja caja inmovilizada por pared (correcto)") 
-    void test47() throws Exception{
-        Tablero tablero = new Tablero("./niveles/level_416.txt");
-        assertFalse(tablero.mover('d'));
+        assertFalse(tablero.mover(movimiento));
         assertEquals(tablero.getNombreNivel()+ "\n"+
                      "   *   \n" + //
                      "   +   \n" + //

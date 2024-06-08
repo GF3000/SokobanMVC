@@ -336,7 +336,8 @@ public class Tablero {
      */
     public boolean comprobarFin(){
         boolean fin = true;
-        int j, i = 0; 
+        int j;
+        int i = 0; 
         while(i<matriz.length && fin){
             j = 0;
             while(j<matriz[0].length && fin){
@@ -383,20 +384,18 @@ public class Tablero {
      * @return tablero en formato String
      */
     public String toString(){
-        String s = nombreNivel+"\n";
-        if (matriz == null) {
-            return s;
-        }
-        if (matriz.length == 0) {
-            return s;
+        StringBuilder sb = new StringBuilder();
+        sb.append(nombreNivel+"\n");
+        if (matriz == null || matriz.length == 0) {
+            return sb.toString();
         }
         for(int i = 0; i<matriz.length; i++){
             for(int j = 0; j<matriz[0].length; j++){
-                s += matriz[i][j];
+                sb.append(matriz[i][j]);
             }
-            s += '\n';
+            sb.append('\n');
         }
         LOGGER.debug("Tablero transformado a String");
-        return s;
+        return sb.toString();
     }
 }

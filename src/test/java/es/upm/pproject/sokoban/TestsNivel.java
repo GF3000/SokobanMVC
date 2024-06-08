@@ -6,8 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.FileNotFoundException;
-import java.util.Stack;
-
+import java.util.Deque;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -53,7 +52,7 @@ class TestsNivel {
     void test6() throws Exception{
         Nivel nivel = new Nivel(1);
         assertNotNull(nivel.getEstadosAnteriores());
-        assertTrue(nivel.getEstadosAnteriores() instanceof Stack<?>);
+        assertTrue(nivel.getEstadosAnteriores() instanceof Deque<?>);
         assertEquals(1, nivel.getEstadosAnteriores().size());
     }
 
