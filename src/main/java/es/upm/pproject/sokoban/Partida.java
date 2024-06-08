@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+import es.upm.pproject.sokoban.controller.Controlador;
+import es.upm.pproject.sokoban.controller.ControladorInterface;
 import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
 @XmlRootElement(name = "partida")

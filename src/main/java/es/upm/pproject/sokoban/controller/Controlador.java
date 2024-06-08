@@ -1,4 +1,4 @@
-package es.upm.pproject.sokoban;
+package es.upm.pproject.sokoban.controller;
 
 import java.io.File;
 import javax.xml.bind.JAXBContext;
@@ -8,6 +8,10 @@ import javax.xml.bind.Unmarshaller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import es.upm.pproject.sokoban.Partida;
+import es.upm.pproject.sokoban.PartidaInterface;
+import es.upm.pproject.sokoban.view.Vista;
 
 public class Controlador implements ControladorInterface {
 

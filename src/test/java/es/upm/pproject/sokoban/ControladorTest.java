@@ -5,6 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import es.upm.pproject.sokoban.controller.Controlador;
+import es.upm.pproject.sokoban.view.Vista;
+
 public class ControladorTest {
 
     private Controlador controlador;

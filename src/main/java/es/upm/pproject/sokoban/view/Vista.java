@@ -1,4 +1,4 @@
-package es.upm.pproject.sokoban;
+package es.upm.pproject.sokoban.view;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -14,6 +14,10 @@ import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import es.upm.pproject.sokoban.PartidaInterface;
+import es.upm.pproject.sokoban.Tablero;
+import es.upm.pproject.sokoban.controller.ControladorInterface;
 
 
 public class Vista extends JFrame {

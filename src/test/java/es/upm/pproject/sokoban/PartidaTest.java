@@ -2,6 +2,10 @@ package es.upm.pproject.sokoban;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+
+import es.upm.pproject.sokoban.controller.Controlador;
+import es.upm.pproject.sokoban.view.Vista;
+
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;

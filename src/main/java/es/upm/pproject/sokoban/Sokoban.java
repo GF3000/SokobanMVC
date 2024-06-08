@@ -1,6 +1,9 @@
 package es.upm.pproject.sokoban;
 
 import javax.swing.SwingUtilities;
+import es.upm.pproject.sokoban.controller.Controlador;
+import es.upm.pproject.sokoban.controller.ControladorInterface;
+import es.upm.pproject.sokoban.view.Vista;
 
 public class Sokoban {
     public static void main(String[] args) {

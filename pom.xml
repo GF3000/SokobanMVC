@@ -34,9 +34,7 @@
 		<sonar.qualitygate.wait>true</sonar.qualitygate.wait>
 		<sonar.projectName>${miniprojectgfvc}-${210239}</sonar.projectName>
 		<sonar.projectKey>${es.upm.pproject.miniproject}:${miniproject}:${miniprojectgfvc}:${210239}</sonar.projectKey>
-		<!-- Files to be excluded from coverage. Define for the view+controller 
-			in your final projects -->
-		<!--sonar.coverage.exclusions>**/swing/</sonar.coverage.exclusions-->
+		<sonar.coverage.exclusions>**/view,**/controller</sonar.coverage.exclusions>
 		<jacoco.version>0.8.6</jacoco.version>
 		<sonar.scm.provider>git</sonar.scm.provider>
 		<sonar.language>java</sonar.language>
@@ -116,7 +114,7 @@
 				<version>3.0.0</version>
 				<configuration>
 					<!-- Set the class with your main method -->
-					<mainClass>es.upm.pproject.examples.App</mainClass>
+					<mainClass>es.upm.pproject.sokoban.Sokoban</mainClass>
 				</configuration>
 			</plugin>
 
