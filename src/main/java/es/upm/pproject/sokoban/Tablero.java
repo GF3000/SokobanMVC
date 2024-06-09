@@ -231,11 +231,10 @@ public class Tablero implements TableroInterface{
 
     @Override
     public String toString(){
+        if(matriz == null) return "";
         StringBuilder sb = new StringBuilder();
         sb.append(nombreNivel+"\n");
-        if (matriz == null || matriz.length == 0) {
-            return sb.toString();
-        }
+        
         int columnLength = matriz[0].length;
         for(int i = 0; i<matriz.length; i++){
             for(int j = 0; j<columnLength; j++){
