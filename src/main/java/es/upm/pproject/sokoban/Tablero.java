@@ -108,11 +108,12 @@ public class Tablero implements TableroInterface{
         
         char prevChar = matriz[personajeFila - 1][personajeColumna];
         char currentChar = matriz[personajeFila][personajeColumna];
-        
-        matriz[personajeFila - 1][personajeColumna] = prevChar != '*' ? 'W' : '&';
+
+        matriz[personajeFila - 1][personajeColumna] = prevChar != '*' && prevChar != '_'? 'W' : '&';
         matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
 
-        if(personajeFila-2<0) return true;
+        if(personajeFila-2<0 || prevChar != '#' && prevChar != '_') 
+            return true;
 
         char prevPrevChar = matriz[personajeFila - 2][personajeColumna];
         matriz[personajeFila - 2][personajeColumna] = prevPrevChar == ' '? '#' : '_';
@@ -133,10 +134,11 @@ public class Tablero implements TableroInterface{
         char prevChar = matriz[personajeFila + 1][personajeColumna];
         char currentChar = matriz[personajeFila][personajeColumna];
         
-        matriz[personajeFila + 1][personajeColumna] = prevChar != '*' ? 'W' : '&';
+        matriz[personajeFila + 1][personajeColumna] = prevChar != '*' && prevChar != '_'? 'W' : '&';
         matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
 
-        if(personajeFila+2>matriz.length-1) return true;
+        if(personajeFila+2>matriz.length-1 || prevChar != '#' && prevChar != '_') 
+            return true;
 
         char prevPrevChar = matriz[personajeFila + 2][personajeColumna];
         matriz[personajeFila + 2][personajeColumna] = prevPrevChar == ' '? '#' : '_';
@@ -157,10 +159,11 @@ public class Tablero implements TableroInterface{
         char prevChar = matriz[personajeFila][personajeColumna-1];
         char currentChar = matriz[personajeFila][personajeColumna];
         
-        matriz[personajeFila][personajeColumna-1] = prevChar != '*' ? 'W' : '&';
+        matriz[personajeFila][personajeColumna-1] = prevChar != '*' && prevChar != '_'? 'W' : '&';
         matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
 
-        if(personajeColumna-2<0) return true;
+        if(personajeColumna-2<0 || prevChar != '#' && prevChar != '_') 
+            return true;
 
         char prevPrevChar = matriz[personajeFila][personajeColumna-2];
         matriz[personajeFila][personajeColumna-2] = prevPrevChar == ' '? '#' : '_';
@@ -181,10 +184,11 @@ public class Tablero implements TableroInterface{
         char prevChar = matriz[personajeFila][personajeColumna+1];
         char currentChar = matriz[personajeFila][personajeColumna];
         
-        matriz[personajeFila][personajeColumna+1] = prevChar != '*' ? 'W' : '&';
+        matriz[personajeFila][personajeColumna+1] = prevChar != '*' && prevChar != '_'? 'W' : '&';
         matriz[personajeFila][personajeColumna] = currentChar == 'W' ? ' ' : '*';
 
-        if(personajeColumna+2>matriz[0].length-1) return true;
+        if(personajeColumna+2>matriz[0].length-1 || prevChar != '#' && prevChar != '_') 
+            return true;
 
         char prevPrevChar = matriz[personajeFila][personajeColumna+2];
         matriz[personajeFila][personajeColumna+2] = prevPrevChar == ' '? '#' : '_';
@@ -234,7 +238,7 @@ public class Tablero implements TableroInterface{
         if(matriz == null) return "";
         StringBuilder sb = new StringBuilder();
         sb.append(nombreNivel+"\n");
-        
+
         int columnLength = matriz[0].length;
         for(int i = 0; i<matriz.length; i++){
             for(int j = 0; j<columnLength; j++){

@@ -641,4 +641,56 @@ class TableroTest {
                      "   _   \n" + //
                      "   *#  \n", tablero.toString());
     }
+
+    @Test
+    @DisplayName("Test mover: W arriba empuja caja sobre endpoint a endpoint (correcto)") 
+    void test55() throws Exception{
+        Tablero tablero = new Tablero("./niveles/level_424.txt");
+        assertTrue(tablero.mover('u'));
+        assertEquals(tablero.getNombreNivel()+ "\n"+
+                     "  _  \n" + //
+                     " #&# \n" + //
+                     "*_ _*\n" + //
+                     " #_# \n" + //
+                     "  *  \n", tablero.toString());
+    }
+
+    @Test
+    @DisplayName("Test mover: W izquierda empuja caja sobre endpoint a endpoint (correcto)") 
+    void test56() throws Exception{
+        Tablero tablero = new Tablero("./niveles/level_424.txt");
+        assertTrue(tablero.mover('l'));
+        assertEquals(tablero.getNombreNivel()+ "\n"+
+                     "  *  \n" + //
+                     " #_# \n" + //
+                     "_& _*\n" + //
+                     " #_# \n" + //
+                     "  *  \n", tablero.toString());
+    }
+
+    @Test
+    @DisplayName("Test mover: W derecha empuja caja sobre endpoint a endpoint (correcto)") 
+    void test57() throws Exception{
+        Tablero tablero = new Tablero("./niveles/level_424.txt");
+        assertTrue(tablero.mover('r'));
+        assertEquals(tablero.getNombreNivel()+ "\n"+
+                     "  *  \n" + //
+                     " #_# \n" + //
+                     "*_ &_\n" + //
+                     " #_# \n" + //
+                     "  *  \n", tablero.toString());
+    }
+
+    @Test
+    @DisplayName("Test mover: W abajo empuja caja sobre endpoint a endpoint (correcto)") 
+    void test58() throws Exception{
+        Tablero tablero = new Tablero("./niveles/level_424.txt");
+        assertTrue(tablero.mover('d'));
+        assertEquals(tablero.getNombreNivel()+ "\n"+
+                     "  *  \n" + //
+                     " #_# \n" + //
+                     "*_ _*\n" + //
+                     " #&# \n" + //
+                     "  _  \n", tablero.toString());
+    }
 }
