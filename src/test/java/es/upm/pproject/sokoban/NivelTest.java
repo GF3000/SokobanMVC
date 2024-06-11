@@ -56,7 +56,7 @@ class NivelTest {
     @DisplayName("Test getTablero") 
     void test6() throws Exception{
         Nivel nivel = new Nivel(1);
-        assertEquals(new Tablero("./niveles/level_1.txt").toString(),
+        assertEquals(new Tablero("./src/main/resources/niveles/level_1.txt").toString(),
             nivel.getTablero().toString());
     }
 
@@ -74,7 +74,7 @@ class NivelTest {
     void test8() throws Exception{
         Nivel nivel = new Nivel(1);
         nivel.deshacer();
-        assertEquals(new Tablero("./niveles/level_1.txt").toString(),
+        assertEquals(new Tablero("./src/main/resources/niveles/level_1.txt").toString(),
             nivel.getTablero().toString());
         assertEquals(0, nivel.getEstadosAnteriores().size());
     }
