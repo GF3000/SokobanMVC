@@ -3,6 +3,9 @@ package es.upm.pproject.sokoban;
 import javax.swing.SwingUtilities;
 import es.upm.pproject.sokoban.controller.Controlador;
 import es.upm.pproject.sokoban.controller.ControladorInterface;
+import es.upm.pproject.sokoban.model.Nivel;
+import es.upm.pproject.sokoban.model.Partida;
+import es.upm.pproject.sokoban.model.PartidaInterface;
 import es.upm.pproject.sokoban.view.Vista;
 
 public class Sokoban {

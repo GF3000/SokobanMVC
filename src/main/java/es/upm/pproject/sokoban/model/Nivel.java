@@ -1,4 +1,4 @@
-package es.upm.pproject.sokoban;
+package es.upm.pproject.sokoban.model;
 
 import java.io.FileNotFoundException;
 import java.util.Deque;
@@ -42,7 +42,7 @@ public class Nivel implements NivelInterface{
      * @throws IncorrectLevelException si el nivel no está bien formado
      */
     public Nivel(int numNivel) throws FileNotFoundException, IncorrectLevelException {
-        tablero = new Tablero(String.format("./niveles/level_%d.txt", numNivel));
+        tablero = new Tablero(String.format("./src/main/resources/niveles/level_%d.txt", numNivel));
         puntuacionRelativa = 0;
         estadosAnteriores = new LinkedList<>();
         estadosAnteriores.add(tablero.getMatriz());

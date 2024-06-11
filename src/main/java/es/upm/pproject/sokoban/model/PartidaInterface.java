@@ -1,4 +1,4 @@
-package es.upm.pproject.sokoban;
+package es.upm.pproject.sokoban.model;
 
 import es.upm.pproject.sokoban.controller.ControladorInterface;
 

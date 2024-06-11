@@ -15,9 +15,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import es.upm.pproject.sokoban.PartidaInterface;
-import es.upm.pproject.sokoban.TableroInterface;
 import es.upm.pproject.sokoban.controller.ControladorInterface;
+import es.upm.pproject.sokoban.model.PartidaInterface;
+import es.upm.pproject.sokoban.model.TableroInterface;
 
 
 public class Vista extends JFrame {

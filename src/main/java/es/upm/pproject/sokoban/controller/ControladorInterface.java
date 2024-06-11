@@ -1,6 +1,6 @@
 package es.upm.pproject.sokoban.controller;
 
-import es.upm.pproject.sokoban.PartidaInterface;
+import es.upm.pproject.sokoban.model.PartidaInterface;
 import es.upm.pproject.sokoban.view.Vista;
 
 /**

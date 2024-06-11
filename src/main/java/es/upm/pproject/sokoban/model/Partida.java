@@ -1,4 +1,4 @@
-package es.upm.pproject.sokoban;
+package es.upm.pproject.sokoban.model;
 
 import java.io.FileNotFoundException;
 import javax.xml.bind.annotation.XmlElement;

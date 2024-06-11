@@ -12,6 +12,9 @@ import java.util.LinkedList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import es.upm.pproject.sokoban.model.Nivel;
+import es.upm.pproject.sokoban.model.Tablero;
+
 class NivelTest {
     @Test
     @DisplayName("Test Constructor: nivel no existe") 

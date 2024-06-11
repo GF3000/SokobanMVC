@@ -9,8 +9,8 @@ import javax.xml.bind.Unmarshaller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import es.upm.pproject.sokoban.Partida;
-import es.upm.pproject.sokoban.PartidaInterface;
+import es.upm.pproject.sokoban.model.Partida;
+import es.upm.pproject.sokoban.model.PartidaInterface;
 import es.upm.pproject.sokoban.view.Vista;
 
 public class Controlador implements ControladorInterface {

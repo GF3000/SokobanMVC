@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import es.upm.pproject.sokoban.controller.Controlador;
+import es.upm.pproject.sokoban.model.Nivel;
+import es.upm.pproject.sokoban.model.Partida;
 import es.upm.pproject.sokoban.view.Vista;
 
 import static org.junit.jupiter.api.Assertions.assertNull;
