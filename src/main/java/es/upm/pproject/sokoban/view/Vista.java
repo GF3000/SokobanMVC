@@ -35,6 +35,8 @@ public class Vista extends JFrame {
     // labels para nivel, puntos y total
     private JLabel levelLabel;
     private JLabel pointsLabel;
+    private JLabel totalPoints;
+
 
     /**
      * Constructor de la clase Vista
@@ -65,6 +67,11 @@ public class Vista extends JFrame {
         pointsLabel.setForeground(Color.WHITE);
         pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
         add(pointsLabel);
+
+        totalPoints = new JLabel("Total: ");
+        totalPoints.setForeground(Color.WHITE);
+        totalPoints.setFont(new Font("Arial", Font.BOLD, 20));
+        add(totalPoints);
 
         //MENU DESPLEGABLE DE MANU
         //1. Creo la barra del menú 
@@ -229,13 +236,17 @@ public class Vista extends JFrame {
         levelLabel.setText(partida.getNivel().getTablero().getNombreNivel());
 
         int points = (int)partida.getPuntuacionAbsoluta();
+        int total_points = (int)partida.getNivel().getPuntuacionRelativa();
         
         // Actualizar los JLabel de puntos y total
         pointsLabel.setText("Points: " + points);
+        totalPoints.setText("Total: " + total_points);
 
         // Agregar los JLabel al JFrame
         getContentPane().add(levelLabel);
         getContentPane().add(pointsLabel);
+        getContentPane().add(totalPoints);
+
 
         JPanel panel = new JPanel() {
             @Override
@@ -261,6 +272,10 @@ public class Vista extends JFrame {
     
     public JLabel getPointsLabel() {
         return pointsLabel;
+    }
+
+    public JLabel getTotalPoints() {
+        return totalPoints;
     }
     
     public HashMap<String, BufferedImage> getImages() {
