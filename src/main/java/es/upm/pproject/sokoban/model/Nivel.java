@@ -21,7 +21,7 @@ public class Nivel implements NivelInterface{
     private static final Logger LOGGER = LoggerFactory.getLogger(Nivel.class);
 
     @XmlElement
-    private TableroInterface tablero;
+    private Tablero tablero;
 
     @XmlElement
     private int puntuacionRelativa;
@@ -56,7 +56,7 @@ public class Nivel implements NivelInterface{
     }
 
     @Override
-    public TableroInterface getTablero() {
+    public Tablero getTablero() {
         LOGGER.debug("Tablero de Nivel {} obtenido", this);
         return tablero;
     }

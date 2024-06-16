@@ -1,6 +1,9 @@
 package es.upm.pproject.sokoban.model;
 
 import java.io.FileNotFoundException;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -10,11 +13,19 @@ import es.upm.pproject.sokoban.controller.ControladorInterface;
 import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 
 @XmlRootElement(name = "partida")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Partida implements PartidaInterface {
 
-    private NivelInterface nivel;
+    @XmlElement(name = "nivel") // Nombre personalizado para el elemento XML
+    private Nivel nivel;
+
+    @XmlElement(name = "puntuacionAbsoluta") // Nombre personalizado para el elemento XML
     private int puntuacionAbsoluta;
+
+    @XmlElement(name = "numeroNivel") // Nombre personalizado para el elemento XML
     private int numeroNivel;
+
+    @XmlTransient
     private ControladorInterface controlador;
 
     /**
@@ -61,8 +72,7 @@ public class Partida implements PartidaInterface {
     }
 
     @Override
-    @XmlElement
-    public NivelInterface getNivel() {
+    public Nivel getNivel() {
         return nivel;
     }
 
@@ -72,7 +82,6 @@ public class Partida implements PartidaInterface {
     }
 
     @Override
-    @XmlElement
     public int getPuntuacionAbsoluta() {
         return puntuacionAbsoluta;
     }
@@ -83,7 +92,6 @@ public class Partida implements PartidaInterface {
     }
 
     @Override
-    @XmlElement
     public int getNumeroNivel() {
         return numeroNivel;
     }
@@ -113,6 +121,7 @@ public class Partida implements PartidaInterface {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
+                    //TODO: Quitar el print
                     System.out.println("Error en el sleep");
                     throw e; // Rethrow the InterruptedException
                 }

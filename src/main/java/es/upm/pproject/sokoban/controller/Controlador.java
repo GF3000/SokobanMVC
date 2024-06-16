@@ -1,6 +1,8 @@
 package es.upm.pproject.sokoban.controller;
 
 import java.io.File;
+
+import javax.swing.text.TabExpander;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -9,16 +11,21 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import es.upm.pproject.sokoban.model.Nivel;
 import es.upm.pproject.sokoban.model.Partida;
 import es.upm.pproject.sokoban.model.PartidaInterface;
+import es.upm.pproject.sokoban.model.Tablero;
 import es.upm.pproject.sokoban.view.Vista;
 
-@XmlRootElement
+@XmlRootElement(name = "controlador")
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlSeeAlso({Partida.class, Nivel.class, Tablero.class, Vista.class})
+
 public class Controlador implements ControladorInterface {
 
     @XmlElement
@@ -63,14 +70,14 @@ public class Controlador implements ControladorInterface {
     public void cargarPartida(String path) {
         try {
             File file = new File(path);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Controlador.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Partida.class);
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Controlador controladorCargado = (Controlador) jaxbUnmarshaller.unmarshal(file);
+            Partida partida = (Partida) jaxbUnmarshaller.unmarshal(file);
 
-            // Actualizar los campos del controlador actual con los del controlador cargado
-            this.partida = controladorCargado.getPartida();
-            this.vista = controladorCargado.getVista();
+            this.partida = partida;
+            this.partida.setControlador(this);
+            
 
             // Opcional: actualizar la vista
             actualizarTablero();
@@ -82,13 +89,15 @@ public class Controlador implements ControladorInterface {
 
     public void guardarPartida(String path) {
         try {
-            JAXBContext context = JAXBContext.newInstance(Controlador.class);
-            Marshaller marshaller = context.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-            marshaller.marshal(this, new File(path));
-            LOGGER.debug("Partida guardada en {}", path);
+            File file = new File(path);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Partida.class);
+
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            jaxbMarshaller.marshal(partida, file);
         } catch (JAXBException e) {
-            LOGGER.error("Error al guardar la partida en {}: {}", path, e.getMessage());
+            e.printStackTrace();
         }
     }
 
