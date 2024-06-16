@@ -1,5 +1,6 @@
 package es.upm.pproject.sokoban.view;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.awt.Color;
@@ -11,11 +12,17 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import es.upm.pproject.sokoban.controller.ControladorInterface;
+import es.upm.pproject.sokoban.controller.Controlador;
 import es.upm.pproject.sokoban.model.PartidaInterface;
 import es.upm.pproject.sokoban.model.TableroInterface;
 
@@ -58,6 +65,74 @@ public class Vista extends JFrame {
         pointsLabel.setForeground(Color.WHITE);
         pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
         add(pointsLabel);
+
+        //MENU DESPLEGABLE DE MANU
+        //1. Creo la barra del menú 
+        JMenuBar barraMenu = new JMenuBar();
+        //2. Creo los menús
+        JMenu menuJuego = new JMenu("Menú");
+        //3. Creo los elementos del menú: cargar partida guardada, guardar partida, salir
+        JMenuItem cargarPartida = new JMenuItem("Cargar partida");
+        JMenuItem guardarPartida = new JMenuItem("Guardar");
+        JMenuItem salir = new JMenuItem("Salir");
+
+        //4. Añadir manejadores de eventos a los elems del menú 
+        cargarPartida.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Seleccionar partida guardada");
+            int userSelection = fileChooser.showOpenDialog(this);
+            
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToLoad = fileChooser.getSelectedFile();
+                c.cargarPartida(fileToLoad.getAbsolutePath());
+            }
+            
+        });
+        guardarPartida.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar partida");
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            fileChooser.setAcceptAllFileFilterUsed(false);
+        
+            if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+                // Asegúrate de que el archivo tenga la extensión correcta
+                if (!fileToSave.getAbsolutePath().endsWith(".xml")) {
+                    fileToSave = new File(fileToSave + ".xml");
+                }
+                // Verificar si el archivo ya existe
+                if (fileToSave.exists()) {
+                    int response = JOptionPane.showConfirmDialog(this, "El archivo ya existe. ¿Quieres sobrescribirlo?", "Confirmar sobrescritura", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                    if (response != JOptionPane.YES_OPTION) {
+                        return; // No sobrescribir el archivo existente
+                    }
+                }
+                // Llamar al método guardarPartida del controlador
+                try {
+                    c.guardarPartida(fileToSave.getAbsolutePath());
+                    JOptionPane.showMessageDialog(this, "Partida guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    JOptionPane.showMessageDialog(this, "Error al guardar la partida: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        salir.addActionListener(e -> {
+            System.exit(0); //cierra la app
+        });
+        //5. Añadimos elementos al menú
+        menuJuego.add(cargarPartida);
+        menuJuego.addSeparator();
+        menuJuego.add(guardarPartida);
+        menuJuego.addSeparator(); //separador entre opciones
+        menuJuego.add(salir);
+       
+        //6. Añadir menús a la barra de menú
+        barraMenu.add(menuJuego);
+
+        //7. Añadimos la barra de menú a la ventana 
+        setJMenuBar(barraMenu);
+
 
         // tema de keypressed
         setFocusable(true);//NO SE SI ES NECESARIO: se usa para que la ventana pueda recibir eventos del teclado
