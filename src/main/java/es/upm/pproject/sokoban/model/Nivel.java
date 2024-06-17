@@ -1,6 +1,7 @@
 package es.upm.pproject.sokoban.model;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Deque;
 import java.util.LinkedList;
 import javax.xml.bind.annotation.XmlElement;
@@ -72,9 +73,7 @@ public class Nivel implements NivelInterface{
         char [][] o = new char[matriz.length][matriz[0].length];
         int columnLength = matriz[0].length;
         for(int i = 0; i<matriz.length; i++){
-            for(int j = 0; j<columnLength; j++){
-                o[i][j] = matriz[i][j];
-            }
+            o[i] = Arrays.copyOf(matriz[i], columnLength);
         }
         LOGGER.debug("Estados anteriores de Nivel {} obtenidos", this);
         estadosAnteriores.push(o);
