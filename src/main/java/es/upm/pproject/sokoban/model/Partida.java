@@ -119,21 +119,12 @@ public class Partida implements PartidaInterface {
 
     @Override
     public void mover(char direccion) throws InterruptedException {
-        System.out.println("hola");
         if (nivel.getTablero().mover(direccion)) {
             nivel.pushInEstadosAnteriores(nivel.getTablero().getMatriz());
             nivel.incremetarPuntuacionRelativa();
             puntuacionAbsoluta++;
             controlador.actualizarTablero();
             if (nivel.getTablero().comprobarFin()) {
-                // Espera 1000 ms antes de avanzar al siguiente nivel
-                /*
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    LOGGER.error("InterruptedException: {}", e.getMessage());
-                    throw e; // Rethrow the InterruptedException
-                }*/
                 if (siguienteNivel())
                     controlador.actualizarTablero();
                 else

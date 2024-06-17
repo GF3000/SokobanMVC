@@ -68,7 +68,7 @@ public class Nivel implements NivelInterface{
     }
 
     @Override
-    public void pushInEstadosAnteriores(char[][] matriz) {
+    public final void pushInEstadosAnteriores(char[][] matriz) {
         char [][] o = new char[matriz.length][matriz[0].length];
         int columnLength = matriz[0].length;
         for(int i = 0; i<matriz.length; i++){
