@@ -235,7 +235,7 @@ public class Tablero implements TableroInterface{
 
     @Override
     public String toString(){
-        if(matriz == null) return "";
+        if(matriz == null || matriz.length == 0) return "";
         StringBuilder sb = new StringBuilder();
         sb.append(nombreNivel+"\n");
 
