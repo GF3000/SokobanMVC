@@ -52,4 +52,9 @@ public interface ControladorInterface {
      * Método que finaliza la partida actual.
      */
     void finPartida();
+
+    /**
+     * Método que reinicia el nivel actual.
+     */
+    void reiniciarNivel();
 }

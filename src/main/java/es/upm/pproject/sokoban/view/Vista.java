@@ -131,7 +131,7 @@ public class Vista extends JFrame {
         });
 
         reiniciar.addActionListener(e -> {
-            c.getPartida().reiniciar();
+            c.reiniciarNivel();
         });
 
         deshacer.addActionListener(e -> {

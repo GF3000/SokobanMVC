@@ -2,6 +2,10 @@ package es.upm.pproject.sokoban.model;
 
 import java.io.FileNotFoundException;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -15,6 +19,8 @@ import es.upm.pproject.sokoban.exceptions.IncorrectLevelException;
 @XmlRootElement(name = "partida")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Partida implements PartidaInterface {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Partida.class);
 
     @XmlElement(name = "nivel") // Nombre personalizado para el elemento XML
     private Nivel nivel;
@@ -121,8 +127,7 @@ public class Partida implements PartidaInterface {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    //TODO: Quitar el print
-                    System.out.println("Error en el sleep");
+                    LOGGER.error("InterruptedException: {}", e.getMessage());
                     throw e; // Rethrow the InterruptedException
                 }
                 if (siguienteNivel())
@@ -135,7 +140,12 @@ public class Partida implements PartidaInterface {
 
     @Override
     public void reiniciar() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'reiniciar'");
+
+        int currentLevel = numeroNivel;
+        try {
+            nivel = new Nivel(currentLevel);
+        } catch (FileNotFoundException | IncorrectLevelException e) {
+            LOGGER.error("Error al reiniciar el nivel {}: {}", currentLevel, e.getMessage());
+        }
     }
 }

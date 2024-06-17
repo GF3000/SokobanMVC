@@ -108,4 +108,10 @@ public class Controlador implements ControladorInterface {
     public void finPartida() {
         //TODO: 
     }
+
+    public void reiniciarNivel() {
+        this.partida.reiniciar();
+        actualizarTablero();
+    }
+        
 }
