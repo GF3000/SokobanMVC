@@ -208,8 +208,9 @@ public class Vista extends JFrame {
     }
    
     public void drawMatrizPix(char[][] matriz, Graphics g) {
+        int numColumns = matriz[0].length;
         for (int y = 0; y < matriz.length; y++) {
-            for (int x = 0; x < matriz[0].length; x++) {
+            for (int x = 0; x < numColumns; x++) {
                 // each elemnt has a different image associted so we have to get the image
                 // and create a "matrix of images" to rrepresent the game
                 String e = matriz[y][x] + "";

@@ -1,8 +1,8 @@
 package es.upm.pproject.sokoban.controller;
 
 import java.io.File;
+import java.util.jar.JarException;
 
-import javax.swing.text.TabExpander;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -62,15 +62,20 @@ public class Controlador implements ControladorInterface {
         try {
             partida.mover(tecla);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Error al ejecutar tecla {}: {}", tecla, e.getMessage());
+            Thread.currentThread().interrupt();
         }
+    }
+
+    private static final JAXBContext creteContext() throws JAXBException{
+        return JAXBContext.newInstance(Partida.class);  
     }
 
     @Override
     public void cargarPartida(String path) {
         try {
             File file = new File(path);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Partida.class);
+            JAXBContext jaxbContext = creteContext();
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
             Partida partida = (Partida) jaxbUnmarshaller.unmarshal(file);
@@ -83,21 +88,21 @@ public class Controlador implements ControladorInterface {
             actualizarTablero();
 
         } catch (JAXBException e) {
-            e.printStackTrace();
+            LOGGER.error("Error al cargar partida: {}", e.getMessage());
         }
     }
 
     public void guardarPartida(String path) {
         try {
             File file = new File(path);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Partida.class);
+            JAXBContext jaxbContext = creteContext();
 
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 
             jaxbMarshaller.marshal(partida, file);
         } catch (JAXBException e) {
-            e.printStackTrace();
+            LOGGER.error("Error al guardar partida: {}", e.getMessage());
         }
     }
 
