@@ -111,17 +111,11 @@ public class Vista extends JFrame {
                 // Verificar si el archivo ya existe
                 if (fileToSave.exists()) {
                     int response = JOptionPane.showConfirmDialog(this, "El archivo ya existe. ¿Quieres sobrescribirlo?", "Confirmar sobrescritura", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                    if (response != JOptionPane.YES_OPTION) {
-                        return; // No sobrescribir el archivo existente
+                    if (response == JOptionPane.YES_OPTION) {
+                        c.guardarPartida(fileToSave.getAbsolutePath());
                     }
-                }
-                // Llamar al método guardarPartida del controlador
-                try {
+                } else {
                     c.guardarPartida(fileToSave.getAbsolutePath());
-                    JOptionPane.showMessageDialog(this, "Partida guardada exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Error al guardar la partida: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
