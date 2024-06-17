@@ -23,9 +23,15 @@ public interface NivelInterface {
     public Deque<char[][]> getEstadosAnteriores();
 
     /**
-     * Deshace el último movimiento y vuelve a un estado anterior
+     * Añade una matriz a la pila de estados anteriores 
      */
-    public void deshacer();
+    public void pushInEstadosAnteriores(char[][] matriz);
+
+    /**
+     * Deshace el último movimiento y vuelve a un estado anterior
+     * @return true si había un estado anterior al que volver
+     */
+    public boolean deshacer();
 
     /**
      * Incrementa la puntuacion relativa

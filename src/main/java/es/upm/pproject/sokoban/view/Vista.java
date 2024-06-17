@@ -22,7 +22,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import es.upm.pproject.sokoban.controller.ControladorInterface;
-import es.upm.pproject.sokoban.controller.Controlador;
 import es.upm.pproject.sokoban.model.PartidaInterface;
 import es.upm.pproject.sokoban.model.TableroInterface;
 
@@ -135,7 +134,7 @@ public class Vista extends JFrame {
         });
 
         deshacer.addActionListener(e -> {
-            c.getPartida().getNivel().deshacer();
+            c.deshacer();
         });
 
         //5. Añadimos elementos al menú

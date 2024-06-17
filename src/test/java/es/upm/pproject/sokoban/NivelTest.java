@@ -1,6 +1,7 @@
 package es.upm.pproject.sokoban;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -70,13 +71,15 @@ class NivelTest {
     }
 
     @Test
-    @DisplayName("Test deshacer") 
+    @DisplayName("Test deshacer, si hay estado anterior") 
     void test8() throws Exception{
         Nivel nivel = new Nivel(1);
-        nivel.deshacer();
+        nivel.getTablero().mover('u');
+        nivel.pushInEstadosAnteriores(nivel.getTablero().getMatriz());
+        assertTrue(nivel.deshacer());
         assertEquals(new Tablero("./src/main/resources/niveles/level_1.txt").toString(),
             nivel.getTablero().toString());
-        assertEquals(0, nivel.getEstadosAnteriores().size());
+        assertEquals(1, nivel.getEstadosAnteriores().size());
     }
 
     @Test
@@ -86,5 +89,13 @@ class NivelTest {
         assertEquals(0, nivel.getPuntuacionRelativa());
         nivel.incremetarPuntuacionRelativa();
         assertEquals(1, nivel.getPuntuacionRelativa());
-    } 
+    }
+    
+    @Test
+    @DisplayName("Test deshacer, no se vuelve a estado anterior") 
+    void test10() throws Exception{
+        Nivel nivel = new Nivel(1);
+        assertFalse(nivel.deshacer());
+        assertEquals(1, nivel.getEstadosAnteriores().size());
+    }
 }

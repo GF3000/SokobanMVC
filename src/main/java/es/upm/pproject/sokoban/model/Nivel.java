@@ -45,7 +45,7 @@ public class Nivel implements NivelInterface{
         tablero = new Tablero(String.format("./src/main/resources/niveles/level_%d.txt", numNivel));
         puntuacionRelativa = 0;
         estadosAnteriores = new LinkedList<>();
-        estadosAnteriores.add(tablero.getMatriz());
+        pushInEstadosAnteriores(tablero.getMatriz());
         LOGGER.debug("Nuevo nivel {} creado", this);
     }
 
@@ -68,9 +68,27 @@ public class Nivel implements NivelInterface{
     }
 
     @Override
-    public void deshacer() {
-        tablero.setMatriz(estadosAnteriores.pop()); 
-        LOGGER.debug("Matriz de Nivel {} devuelta a estado anterior", this);
+    public void pushInEstadosAnteriores(char[][] matriz) {
+        char [][] o = new char[matriz.length][matriz[0].length];
+        int columnLength = matriz[0].length;
+        for(int i = 0; i<matriz.length; i++){
+            for(int j = 0; j<columnLength; j++){
+                o[i][j] = matriz[i][j];
+            }
+        }
+        LOGGER.debug("Estados anteriores de Nivel {} obtenidos", this);
+        estadosAnteriores.push(o);
+    }
+
+    @Override
+    public boolean deshacer() {
+        if(estadosAnteriores.size() > 1){
+            estadosAnteriores.pop();
+            tablero.setMatriz(estadosAnteriores.peek()); 
+            LOGGER.debug("Matriz de Nivel {} devuelta a estado anterior", this);
+            return true;
+        }
+        return false;
     }
 
     @Override

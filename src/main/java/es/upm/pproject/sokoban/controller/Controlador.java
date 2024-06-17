@@ -105,6 +105,11 @@ public class Controlador implements ControladorInterface {
         vista.pintar(partida);
     }
 
+    public void deshacer() {
+        partida.getNivel().deshacer();
+        actualizarTablero();
+    }
+
     public void finPartida() {
         //TODO: 
     }

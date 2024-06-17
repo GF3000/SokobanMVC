@@ -49,6 +49,11 @@ public interface ControladorInterface {
     void actualizarTablero();
 
     /**
+     * Método que deshace el último movimiento realizado.
+     */
+    void deshacer();
+
+    /**
      * Método que finaliza la partida actual.
      */
     void finPartida();
