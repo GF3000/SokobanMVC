@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 
-public class PartidaTest {
+class PartidaTest {
     
     private Partida partida;
     private Nivel nivel;
@@ -20,7 +20,7 @@ public class PartidaTest {
     private Controlador controlador;
     
     @BeforeEach
-    public void setUp() throws Exception{
+    void setUp() throws Exception{
         nivel = new Nivel(1);
         partida = new Partida(nivel, 0, 1);
         vista = new Vista();
@@ -29,12 +29,12 @@ public class PartidaTest {
     }
     
     @Test
-    public void testGetControlador() {
+    void testGetControlador() {
         assertEquals(controlador, partida.getControlador());
     }
     
     @Test
-    public void testSetControlador() {
+    void testSetControlador() {
         Vista newVista = new Vista();
         Partida newPartida = new Partida(nivel, 0, 1);
         Controlador newControlador = new Controlador(newVista, newPartida);
@@ -43,12 +43,12 @@ public class PartidaTest {
     }
     
     @Test
-    public void testGetNivel() {
+    void testGetNivel() {
         assertEquals(nivel, partida.getNivel());
     }
     
     @Test
-    public void testSetNivel() throws Exception{
+    void testSetNivel() throws Exception{
 
         Nivel newNivel = new Nivel(1);
         partida.setNivel(newNivel);
@@ -56,29 +56,29 @@ public class PartidaTest {
     }
     
     @Test
-    public void testGetPuntuacionAbsoluta() {
+    void testGetPuntuacionAbsoluta() {
         assertEquals(0, partida.getPuntuacionAbsoluta());
     }
     
     @Test
-    public void testSetPuntuacionAbsoluta() {
+    void testSetPuntuacionAbsoluta() {
         partida.setPuntuacionAbsoluta(100);
         assertEquals(100, partida.getPuntuacionAbsoluta());
     }
     
     @Test
-    public void testGetNumeroNivel() {
+    void testGetNumeroNivel() {
         assertEquals(1, partida.getNumeroNivel());
     }
     
     @Test
-    public void testSetNumeroNivel() {
+    void testSetNumeroNivel() {
         partida.setNumeroNivel(2);
         assertEquals(2, partida.getNumeroNivel());
     }
     
     @Test
-    public void testConstructorWithControlador() {
+    void testConstructorWithControlador() {
         Partida newPartida = new Partida(nivel, 0, 1, controlador);
         assertEquals(nivel, newPartida.getNivel());
         assertEquals(0, newPartida.getPuntuacionAbsoluta());
@@ -87,7 +87,7 @@ public class PartidaTest {
     }
     
     @Test
-    public void testConstructorWithoutControlador() {
+    void testConstructorWithoutControlador() {
         Partida newPartida = new Partida(nivel, 0, 1);
         assertEquals(nivel, newPartida.getNivel());
         assertEquals(0, newPartida.getPuntuacionAbsoluta());
@@ -96,7 +96,7 @@ public class PartidaTest {
     }
     
     @Test
-    public void testSiguienteNivel() {
+    void testSiguienteNivel() {
         //Assert False partida.siguienteNivel
         
         assertTrue(partida.siguienteNivel());
@@ -104,7 +104,7 @@ public class PartidaTest {
     }
     
     @Test
-    public void testMover() throws InterruptedException {
+    void testMover() throws InterruptedException {
         partida.mover('W');
         //TODO:
     }    
