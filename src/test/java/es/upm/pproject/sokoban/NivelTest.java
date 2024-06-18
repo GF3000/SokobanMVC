@@ -67,18 +67,21 @@ class NivelTest {
         Nivel nivel = new Nivel(1);
         assertNotNull(nivel.getEstadosAnteriores());
         assertTrue(nivel.getEstadosAnteriores() instanceof Deque<?>);
-        assertEquals(1, nivel.getEstadosAnteriores().size());
+        assertEquals(0, nivel.getEstadosAnteriores().size());
     }
 
     @Test
     @DisplayName("Test deshacer, si hay estado anterior") 
     void test8() throws Exception{
         Nivel nivel = new Nivel(1);
+        Nivel nivel2 = new Nivel(1);
         nivel.getTablero().mover('u');
         nivel.pushInEstadosAnteriores(nivel.getTablero().getMatriz());
+        nivel.getTablero().mover('u');
+        nivel.pushInEstadosAnteriores(nivel.getTablero().getMatriz());
+        nivel2.getTablero().mover('u');
         assertTrue(nivel.deshacer());
-        assertEquals(new Tablero("./src/main/resources/niveles/level_1.txt").toString(),
-            nivel.getTablero().toString());
+        assertEquals(nivel2.getTablero().toString(), nivel.getTablero().toString());
         assertEquals(1, nivel.getEstadosAnteriores().size());
     }
 
@@ -96,6 +99,6 @@ class NivelTest {
     void test10() throws Exception{
         Nivel nivel = new Nivel(1);
         assertFalse(nivel.deshacer());
-        assertEquals(1, nivel.getEstadosAnteriores().size());
+        assertEquals(0, nivel.getEstadosAnteriores().size());
     }
 }
