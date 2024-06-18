@@ -229,8 +229,8 @@ public class Vista extends JFrame {
         // levelLabel.setText("Level: " + partida.getNumeroNivel());
         levelLabel.setText(partida.getNivel().getTablero().getNombreNivel());
 
-        int points = (int)partida.getPuntuacionAbsoluta();
-        int total_points = (int)partida.getNivel().getPuntuacionRelativa();
+        int total_points = (int)partida.getPuntuacionAbsoluta();
+        int points = (int)partida.getNivel().getPuntuacionRelativa();
         
         // Actualizar los JLabel de puntos y total
         pointsLabel.setText("Points: " + points);
@@ -238,8 +238,8 @@ public class Vista extends JFrame {
 
         // Agregar los JLabel al JFrame
         getContentPane().add(levelLabel);
-        getContentPane().add(pointsLabel);
         getContentPane().add(totalPoints);
+        getContentPane().add(pointsLabel);
 
 
         JPanel panel = new JPanel() {
