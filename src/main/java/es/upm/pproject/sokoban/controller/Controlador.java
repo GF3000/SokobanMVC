@@ -116,7 +116,7 @@ public class Controlador implements ControladorInterface {
     }
 
     public void finPartida() {
-        //TODO: 
+        System.exit(0);
     }
 
     public void reiniciarNivel() {
