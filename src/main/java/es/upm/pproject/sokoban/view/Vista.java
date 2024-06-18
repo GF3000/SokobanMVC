@@ -275,5 +275,10 @@ public class Vista extends JFrame {
     public HashMap<String, BufferedImage> getImages() {
         return images;
     }
+
+    public void mostrarFinPartida() {
+        JOptionPane.showMessageDialog(this, "¡Enhorabuena! Has completado todos los niveles", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
+        //TODO: cerrar juego cuando usuario pulse aceptar
+    }
   
 }
