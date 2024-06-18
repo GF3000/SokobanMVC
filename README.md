@@ -12,8 +12,8 @@ This project contains
 ## Project Structure
 This project is organized into several key directories, each serving a specific purpose in the development and execution of the application. Below is an overview of the project's folder structure and a brief description of each directory's contents.
 
-- **deliverables**: 
-- **log**:
+- **deliverables**: Contains all the issues we divided the project into in order to manage the development.  
+- **log**: Saves the output of the project once you run it. 
 - **src/main/java/es/upm/pproject/sokoban**
     - **controller**: Contains classes responsible for handling the game's logic and interactions between the model and view. 
         - `Controlador.java`: Implements the game's control logic, managing game states and user actions. 
@@ -28,32 +28,16 @@ This project is organized into several key directories, each serving a specific 
         - `Tablero.java`: Represents the game board, including the positions of walls, boxes, and the player.
         - `TableroInterface.java`: Specifies the functionalities required for a game board.
     - **view**: Contains classes related to the graphical user interface of the game. 
-        - **imagenes**: Stores image files used in the game's GUI, such as icons and sprites. 
+        - **imagenes**: Stores image files used in the game's GUI, such as icons and sprites. Images loaded by the game are in `png` format. 
         - `Vista.java`: Manages the display of the game, including rendering the board and handling user inputs. 
-    - `Sokoban.java`: The main class that launches the game application. 
+    - `Sokoban.java`: The main class that launches the game application. `
 - **src/test/java/es/upm/pproject/sokoban**: Contains the unit tests specific for the methods of each class.
     - `ControladorTest.java`
     - `NivelTest.java`
     - `PartidaTest.java`
     - `TableroTest.java`
-- **target**: 
-
-
-
-
-#### src/main/java/es/upm/pproject/sokoban/exceptions
-
-#### src/main/java/es/upm/pproject/sokoban/model
-
-#### src/main/java/es/upm/pproject/sokoban/view
-
-
-### src/main/resources
-
-
-
-### src/test
-
+- **src/main/resources**: Contains all the levels we created for the game. This levels are stored and used in `txt format in order to transform every item into an image. 
+- **target**: Directory used by Maven to store all output of the build process. This includes compiled `.class` files, packaged JARs, generated documentation, and any other artifacts produced during the build. It is the default build directory for Maven projects.
 
 
 ## Introduction
@@ -189,4 +173,10 @@ This interface represents a course and contains different methods related to man
 - **toString()**
   - Description: This method is called to get the string representation of the table.
   - Returns: A string representation of the table.
-  
+
+
+ # Authors  
+  - Victor Caro Fuentes 
+  - Victoria Fernández Alegría
+  - Guillermo Franco Gimeno
+  - Manuela Bautista Javier
