@@ -80,9 +80,9 @@ public class Vista extends JFrame {
         //3. Creo los elementos del menú: cargar partida guardada, guardar partida, salir
         JMenuItem cargarPartida = new JMenuItem("Cargar partida");
         JMenuItem guardarPartida = new JMenuItem("Guardar");
-        JMenuItem salir = new JMenuItem("Salir");
-        JMenuItem reiniciar = new JMenuItem("Reiniciar");
-        JMenuItem deshacer = new JMenuItem("Deshacer");
+        JMenuItem salir = new JMenuItem("Salir (esc)");
+        JMenuItem reiniciar = new JMenuItem("Reiniciar (r)");
+        JMenuItem deshacer = new JMenuItem("Deshacer (z)");
 
         //4. Añadir manejadores de eventos a los elems del menú 
         cargarPartida.addActionListener(e -> {
