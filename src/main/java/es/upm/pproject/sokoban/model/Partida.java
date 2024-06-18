@@ -138,8 +138,8 @@ public class Partida implements PartidaInterface {
 
         int currentLevel = numeroNivel;
         try {
+            this.puntuacionAbsoluta = nivel.getPuntuacionRelativa();
             nivel = new Nivel(currentLevel);
-            this.puntuacionAbsoluta = 0;
         } catch (FileNotFoundException | IncorrectLevelException e) {
             LOGGER.error("Error al reiniciar el nivel {}: {}", currentLevel, e.getMessage());
         }
