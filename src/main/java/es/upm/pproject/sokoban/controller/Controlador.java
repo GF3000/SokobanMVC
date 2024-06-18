@@ -1,5 +1,6 @@
 package es.upm.pproject.sokoban.controller;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -56,9 +57,18 @@ public class Controlador implements ControladorInterface {
         return partida;
     }
 
-    public void ejecutarTecla(char tecla) {
+    public void ejecutarTecla(int tecla) {
         try {
-            partida.mover(tecla);
+            switch (tecla) {
+                case KeyEvent.VK_UP: partida.mover('u'); break;
+                case KeyEvent.VK_LEFT: partida.mover('l'); break;
+                case KeyEvent.VK_RIGHT: partida.mover('r'); break;
+                case KeyEvent.VK_DOWN: partida.mover('d'); break;
+                case KeyEvent.VK_Z: deshacer(); break;
+                case KeyEvent.VK_ESCAPE: System.exit(0); break;
+                case KeyEvent.VK_R: reiniciarNivel(); break;
+                default: break;
+            }
         } catch (Exception e) {
             LOGGER.error("Error al ejecutar tecla {}: {}", tecla, e.getMessage());
             Thread.currentThread().interrupt();

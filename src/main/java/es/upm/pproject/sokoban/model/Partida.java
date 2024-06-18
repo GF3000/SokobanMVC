@@ -148,22 +148,11 @@ public class Partida implements PartidaInterface {
     @Override
     public void deshacer() {
         if (!nivel.deshacer()) {
-            try{
-                nivel.getTablero().setMatriz(new Nivel(numeroNivel).getTablero().getMatriz());
-                
-                
-            }catch (FileNotFoundException | IncorrectLevelException e){
-                LOGGER.error("Error al deshacer el nivel {}: {}", numeroNivel, e.getMessage());
-            }
-            
-        }
-        if(this.nivel.getPuntuacionRelativa() > 0){
+            reiniciar();
+        }else{
             puntuacionAbsoluta--;
             this.nivel.decrementarPuntuacionRelativa();
-        }
-        controlador.actualizarTablero();
-
-            
-    }
-    
+            controlador.actualizarTablero();
+        }    
+    }  
 }

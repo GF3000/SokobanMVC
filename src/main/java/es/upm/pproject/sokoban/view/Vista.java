@@ -153,19 +153,9 @@ public class Vista extends JFrame {
         setFocusable(true);//NO SE SI ES NECESARIO: se usa para que la ventana pueda recibir eventos del teclado
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                int codigoTecla = e.getKeyCode();
-                switch(codigoTecla) {
-                    case KeyEvent.VK_UP: keyPressed('u'); break;
-                    case KeyEvent.VK_DOWN: keyPressed('d'); break;
-                    case KeyEvent.VK_LEFT: keyPressed('l'); break;
-                    case KeyEvent.VK_RIGHT: keyPressed('r'); break;
-                    default: break;
-                }
-                // System.out.println("key pressed: " + key);
+                keyPressed(e.getKeyCode());
             }
-            private void keyPressed(char key) {
-                // System.out.println("si entra");
-                
+            private void keyPressed(int key) {
                 // if any key is pressed, the controler will be called
                 c.ejecutarTecla(key);
             }

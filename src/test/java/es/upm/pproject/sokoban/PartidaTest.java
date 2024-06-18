@@ -104,9 +104,17 @@ class PartidaTest {
     }
     
     @Test
-    void testMover() throws InterruptedException {
-        partida.mover('W');
-        //TODO:
-    }    
+    void testMoverSinBloqueo() throws InterruptedException {
+        partida.mover('u');
+        assertEquals(1, partida.getPuntuacionAbsoluta());
+        assertEquals(1, partida.getNivel().getPuntuacionRelativa());
+    }
+
+    @Test
+    void testMoverConBloqueo() throws InterruptedException {
+        partida.mover('l');
+        assertEquals(0, partida.getPuntuacionAbsoluta());
+        assertEquals(0, partida.getNivel().getPuntuacionRelativa());
+    }     
     
 }

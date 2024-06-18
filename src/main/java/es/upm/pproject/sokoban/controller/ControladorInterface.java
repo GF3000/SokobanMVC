@@ -27,7 +27,7 @@ public interface ControladorInterface {
      * 
      * @param tecla la tecla pulsada
      */
-    void ejecutarTecla(char tecla);
+    void ejecutarTecla(int tecla);
 
     /**
      * Método que carga una partida desde una ruta especificada.
