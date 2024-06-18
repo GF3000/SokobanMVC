@@ -1,8 +1,6 @@
 package es.upm.pproject.sokoban.controller;
 
 import java.io.File;
-import java.util.jar.JarException;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -78,9 +76,8 @@ public class Controlador implements ControladorInterface {
             JAXBContext jaxbContext = creteContext();
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Partida partida = (Partida) jaxbUnmarshaller.unmarshal(file);
 
-            this.partida = partida;
+            this.partida = (Partida)jaxbUnmarshaller.unmarshal(file);
             this.partida.setControlador(this);
             
 
