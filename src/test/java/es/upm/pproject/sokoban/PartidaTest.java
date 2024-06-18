@@ -1,6 +1,8 @@
 package es.upm.pproject.sokoban;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 import org.junit.jupiter.api.Test;
 
 import es.upm.pproject.sokoban.controller.Controlador;
@@ -28,6 +30,12 @@ class PartidaTest {
         partida.setControlador(controlador);
     }
     
+    @Test
+    void testConstructorVacio() {
+        Partida partida2 = new Partida();
+        assertNotNull(partida2);
+    }
+
     @Test
     void testGetControlador() {
         assertEquals(controlador, partida.getControlador());

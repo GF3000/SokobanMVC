@@ -65,7 +65,6 @@ public class Controlador implements ControladorInterface {
                 case KeyEvent.VK_RIGHT: partida.mover('r'); break;
                 case KeyEvent.VK_DOWN: partida.mover('d'); break;
                 case KeyEvent.VK_Z: deshacer(); break;
-                case KeyEvent.VK_ESCAPE: System.exit(0); break;
                 case KeyEvent.VK_R: reiniciarNivel(); break;
                 default: break;
             }
@@ -87,7 +86,7 @@ public class Controlador implements ControladorInterface {
 
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 
-            this.partida = (Partida)jaxbUnmarshaller.unmarshal(file);
+            this.partida = (PartidaInterface)jaxbUnmarshaller.unmarshal(file);
             this.partida.setControlador(this);
             
 

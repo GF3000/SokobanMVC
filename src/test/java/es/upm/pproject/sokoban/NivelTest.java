@@ -101,4 +101,14 @@ class NivelTest {
         assertFalse(nivel.deshacer());
         assertEquals(0, nivel.getEstadosAnteriores().size());
     }
+
+    @Test
+    @DisplayName("Test decrementarPuntuacionRelativa") 
+    void test11() throws Exception{
+        Nivel nivel = new Nivel(1);
+        nivel.incremetarPuntuacionRelativa();
+        assertEquals(1, nivel.getPuntuacionRelativa());
+        nivel.decrementarPuntuacionRelativa();
+        assertEquals(0, nivel.getPuntuacionRelativa());
+    }
 }
