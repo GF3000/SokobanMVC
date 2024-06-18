@@ -133,12 +133,10 @@ public class Vista extends JFrame {
 
         //5. Añadimos elementos al menú
         menuJuego.add(deshacer);
+        menuJuego.add(reiniciar);
         menuJuego.addSeparator();
         menuJuego.add(cargarPartida);
-        menuJuego.addSeparator();
         menuJuego.add(guardarPartida);
-        menuJuego.addSeparator(); //separador entre opciones
-        menuJuego.add(reiniciar);
         menuJuego.addSeparator();
         menuJuego.add(salir);
        
