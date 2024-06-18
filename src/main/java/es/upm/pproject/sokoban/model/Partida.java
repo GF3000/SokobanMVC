@@ -144,4 +144,24 @@ public class Partida implements PartidaInterface {
             LOGGER.error("Error al reiniciar el nivel {}: {}", currentLevel, e.getMessage());
         }
     }
+
+    @Override
+    public void deshacer() {
+        if (nivel.deshacer()) {
+            puntuacionAbsoluta--;
+            this.nivel.decrementarPuntuacionRelativa();
+            controlador.actualizarTablero();
+        }else{
+            try{
+                nivel.getTablero().setMatriz(new Nivel(numeroNivel).getTablero().getMatriz());
+
+            }catch (FileNotFoundException | IncorrectLevelException e){
+                LOGGER.error("Error al deshacer el nivel {}: {}", numeroNivel, e.getMessage());
+            }
+            
+        }
+
+            
+    }
+    
 }

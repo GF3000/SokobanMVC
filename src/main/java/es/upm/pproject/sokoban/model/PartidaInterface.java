@@ -81,4 +81,9 @@ public interface PartidaInterface {
      * Reiniciar el nivelOv
      */
     void reiniciar();
+
+    /**
+     * Deshacer el último movimiento realizado.
+     */
+    void deshacer();
 }

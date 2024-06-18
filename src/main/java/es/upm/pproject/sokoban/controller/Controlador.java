@@ -108,12 +108,12 @@ public class Controlador implements ControladorInterface {
     }
 
     public void deshacer() {
-        partida.getNivel().deshacer();
+        partida.deshacer();
         actualizarTablero();
     }
 
     public void finPartida() {
-        System.exit(0);
+        this.vista.mostrarFinPartida();
     }
 
     public void reiniciarNivel() {

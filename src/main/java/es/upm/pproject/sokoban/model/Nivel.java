@@ -46,7 +46,6 @@ public class Nivel implements NivelInterface{
         tablero = new Tablero(String.format("./src/main/resources/niveles/level_%d.txt", numNivel));
         puntuacionRelativa = 0;
         estadosAnteriores = new LinkedList<>();
-        pushInEstadosAnteriores(tablero.getMatriz());
         LOGGER.debug("Nuevo nivel {} creado", this);
     }
 
@@ -94,5 +93,11 @@ public class Nivel implements NivelInterface{
     public void incremetarPuntuacionRelativa() {
         puntuacionRelativa++;
         LOGGER.debug("Puntuación relativa de Nivel {} incrementada", this);
+    }
+
+    @Override
+    public void decrementarPuntuacionRelativa() {
+        puntuacionRelativa--;
+        LOGGER.debug("Puntuación relativa de Nivel {} decrementada", this);
     }
 }

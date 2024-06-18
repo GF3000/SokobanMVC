@@ -37,4 +37,9 @@ public interface NivelInterface {
      * Incrementa la puntuacion relativa
      */
     public void incremetarPuntuacionRelativa();
+
+    /**
+     * Decrementa la puntuacion relativa
+     */
+    public void decrementarPuntuacionRelativa();
 }
