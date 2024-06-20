@@ -3,6 +3,7 @@ package es.upm.pproject.sokoban.view;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -260,7 +261,7 @@ public class Vista extends JFrame {
         return totalPoints;
     }
     
-    public HashMap<String, BufferedImage> getImages() {
+    public Map<String, BufferedImage> getImages() {
         return images;
     }
 
