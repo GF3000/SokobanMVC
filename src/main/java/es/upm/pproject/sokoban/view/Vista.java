@@ -32,7 +32,7 @@ public class Vista extends JFrame {
     private transient HashMap<String, BufferedImage> images; // set of images
     private int size = 64; // size of the tile
     private transient ControladorInterface c; // creo que esto finalmente no hace falta aqui
-    private String font = "Arial";
+    private String fontTexto = "Arial";
 
     // labels para nivel, puntos y total
     private JLabel levelLabel;
@@ -62,17 +62,17 @@ public class Vista extends JFrame {
         // labels para nivel y puntos
         levelLabel = new JLabel("Level: ");
         levelLabel.setForeground(Color.black);
-        levelLabel.setFont(new Font(font, Font.BOLD, 20));
+        levelLabel.setFont(new Font(fontTexto, Font.BOLD, 20));
         add(levelLabel);
 
         pointsLabel = new JLabel("Points: ");
         pointsLabel.setForeground(Color.WHITE);
-        pointsLabel.setFont(new Font(font, Font.BOLD, 20));
+        pointsLabel.setFont(new Font(fontTexto, Font.BOLD, 20));
         add(pointsLabel);
 
         totalPoints = new JLabel("Total: ");
         totalPoints.setForeground(Color.WHITE);
-        totalPoints.setFont(new Font(font, Font.BOLD, 20));
+        totalPoints.setFont(new Font(fontTexto, Font.BOLD, 20));
         add(totalPoints);
 
         //MENU DESPLEGABLE DE MANU
