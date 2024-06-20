@@ -45,20 +45,29 @@ public class Vista extends JFrame {
      */
 
     public Vista() {
-
         images = new HashMap<>();
         try {
             loadImages();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        setupFrame();
+        setupLabels();
+        setupMenu();
+        setupKeyListener();
+    }
+
+    
+    private void setupFrame() {
         // establecer fondo a color
         getContentPane().setBackground(Color.gray);
         setTitle("Sokoban");
         setSize(600, 600);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout(FlowLayout.CENTER)); // para alinear los JLabel horizontalmente
+        setLayout(new FlowLayout(FlowLayout.CENTER));  // para alinear los JLabel horizontalmente
+    }
 
+    private void setupLabels() {
         // labels para nivel y puntos
         levelLabel = new JLabel("Level: ");
         levelLabel.setForeground(Color.black);
@@ -74,8 +83,10 @@ public class Vista extends JFrame {
         totalPoints.setForeground(Color.WHITE);
         totalPoints.setFont(new Font(fontTexto, Font.BOLD, 20));
         add(totalPoints);
-
-        //MENU DESPLEGABLE DE MANU
+    }    
+    
+    private void setupMenu() {
+         //MENU DESPLEGABLE DE MANU
         //1. Creo la barra del menú 
         JMenuBar barraMenu = new JMenuBar();
         //2. Creo los menús
@@ -87,53 +98,11 @@ public class Vista extends JFrame {
         JMenuItem reiniciar = new JMenuItem("Reiniciar (r)");
         JMenuItem deshacer = new JMenuItem("Deshacer (z)");
 
-        //4. Añadir manejadores de eventos a los elems del menú 
-        cargarPartida.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Seleccionar partida guardada");
-            int userSelection = fileChooser.showOpenDialog(this);
-            
-            if (userSelection == JFileChooser.APPROVE_OPTION) {
-                File fileToLoad = fileChooser.getSelectedFile();
-                c.cargarPartida(fileToLoad.getAbsolutePath());
-            }
-            
-        });
-        guardarPartida.addActionListener(e -> {
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setDialogTitle("Guardar partida");
-            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-            fileChooser.setAcceptAllFileFilterUsed(false);
-        
-            if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-                File fileToSave = fileChooser.getSelectedFile();
-                // Asegúrate de que el archivo tenga la extensión correcta
-                if (!fileToSave.getAbsolutePath().endsWith(".xml")) {
-                    fileToSave = new File(fileToSave + ".xml");
-                }
-                // Verificar si el archivo ya existe
-                if (fileToSave.exists()) {
-                    int response = JOptionPane.showConfirmDialog(this, "El archivo ya existe. ¿Quieres sobrescribirlo?", "Confirmar sobrescritura", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                    if (response == JOptionPane.YES_OPTION) {
-                        c.guardarPartida(fileToSave.getAbsolutePath());
-                    }
-                } else {
-                    c.guardarPartida(fileToSave.getAbsolutePath());
-                }
-            }
-        });
-        salir.addActionListener(e -> 
-            System.exit(0) //cierra la app
-        );
-
-        reiniciar.addActionListener(e -> 
-            c.reiniciarNivel()
-        );
-
-        deshacer.addActionListener(e -> 
-            c.deshacer()
-        );
-
+        cargarPartida.addActionListener(e -> cargarPartida());
+        guardarPartida.addActionListener(e -> guardarPartida());
+        salir.addActionListener(e -> System.exit(0));
+        reiniciar.addActionListener(e -> c.reiniciarNivel());
+        deshacer.addActionListener(e -> c.deshacer());
         //5. Añadimos elementos al menú
         menuJuego.add(deshacer);
         menuJuego.add(reiniciar);
@@ -142,28 +111,59 @@ public class Vista extends JFrame {
         menuJuego.add(guardarPartida);
         menuJuego.addSeparator();
         menuJuego.add(salir);
-       
+   
         //6. Añadir menús a la barra de menú
         barraMenu.add(menuJuego);
 
         //7. Añadimos la barra de menú a la ventana 
         setJMenuBar(barraMenu);
+    }
+           
 
+    private void cargarPartida() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Seleccionar partida guardada");
+        int userSelection = fileChooser.showOpenDialog(this);
+    
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToLoad = fileChooser.getSelectedFile();
+            c.cargarPartida(fileToLoad.getAbsolutePath());
+        }
+    }
 
-        // tema de keypressed
-        setFocusable(true);//NO SE SI ES NECESARIO: se usa para que la ventana pueda recibir eventos del teclado
-        addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                keyPressed(e.getKeyCode());
+    private void guardarPartida() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar partida");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);
+    
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            // Asegúrate de que el archivo tenga la extensión correcta
+            if (!fileToSave.getAbsolutePath().endsWith(".xml")) {
+                fileToSave = new File(fileToSave + ".xml");
             }
-            private void keyPressed(int key) {
-                // if any key is pressed, the controler will be called
-                c.ejecutarTecla(key);
+            // Verificar si el archivo ya existe
+            if (fileToSave.exists()) {
+                int response = JOptionPane.showConfirmDialog(this, "El archivo ya existe. ¿Quieres sobrescribirlo?", "Confirmar sobrescritura", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (response == JOptionPane.YES_OPTION) {
+                    c.guardarPartida(fileToSave.getAbsolutePath());
+                }
+            } else {
+                c.guardarPartida(fileToSave.getAbsolutePath());
+            }
+        }
+    }
+        
+    private void setupKeyListener() {
+        setFocusable(true);
+        addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                c.ejecutarTecla(e.getKeyCode());
             }
         });
-        
     }
+
 
     public void setControlador(ControladorInterface c) {
         this.c = c;
