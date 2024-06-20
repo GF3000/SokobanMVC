@@ -27,9 +27,9 @@ import es.upm.pproject.sokoban.model.TableroInterface;
 
 
 public class Vista extends JFrame {
-    private HashMap<String, BufferedImage> images; // set of images
+    private transient HashMap<String, BufferedImage> images; // set of images
     private int size = 64; // size of the tile
-    private ControladorInterface c; // creo que esto finalmente no hace falta aqui
+    private transient ControladorInterface c; // creo que esto finalmente no hace falta aqui
 
     // labels para nivel, puntos y total
     private JLabel levelLabel;
