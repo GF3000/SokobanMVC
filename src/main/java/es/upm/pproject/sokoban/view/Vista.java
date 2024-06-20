@@ -21,6 +21,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 import es.upm.pproject.sokoban.controller.ControladorInterface;
 import es.upm.pproject.sokoban.model.PartidaInterface;
@@ -31,6 +32,7 @@ public class Vista extends JFrame {
     private transient HashMap<String, BufferedImage> images; // set of images
     private int size = 64; // size of the tile
     private transient ControladorInterface c; // creo que esto finalmente no hace falta aqui
+    private String font = "Arial";
 
     // labels para nivel, puntos y total
     private JLabel levelLabel;
@@ -54,23 +56,23 @@ public class Vista extends JFrame {
         getContentPane().setBackground(Color.gray);
         setTitle("Sokoban");
         setSize(600, 600);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new FlowLayout(FlowLayout.CENTER)); // para alinear los JLabel horizontalmente
 
         // labels para nivel y puntos
         levelLabel = new JLabel("Level: ");
         levelLabel.setForeground(Color.black);
-        levelLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        levelLabel.setFont(new Font(font, Font.BOLD, 20));
         add(levelLabel);
 
         pointsLabel = new JLabel("Points: ");
         pointsLabel.setForeground(Color.WHITE);
-        pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        pointsLabel.setFont(new Font(font, Font.BOLD, 20));
         add(pointsLabel);
 
         totalPoints = new JLabel("Total: ");
         totalPoints.setForeground(Color.WHITE);
-        totalPoints.setFont(new Font("Arial", Font.BOLD, 20));
+        totalPoints.setFont(new Font(font, Font.BOLD, 20));
         add(totalPoints);
 
         //MENU DESPLEGABLE DE MANU
@@ -120,17 +122,17 @@ public class Vista extends JFrame {
                 }
             }
         });
-        salir.addActionListener(e -> {
-            System.exit(0); //cierra la app
-        });
+        salir.addActionListener(e -> 
+            System.exit(0) //cierra la app
+        );
 
-        reiniciar.addActionListener(e -> {
-            c.reiniciarNivel();
-        });
+        reiniciar.addActionListener(e -> 
+            c.reiniciarNivel()
+        );
 
-        deshacer.addActionListener(e -> {
-            c.deshacer();
-        });
+        deshacer.addActionListener(e -> 
+            c.deshacer()
+        );
 
         //5. Añadimos elementos al menú
         menuJuego.add(deshacer);
@@ -151,6 +153,7 @@ public class Vista extends JFrame {
         // tema de keypressed
         setFocusable(true);//NO SE SI ES NECESARIO: se usa para que la ventana pueda recibir eventos del teclado
         addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 keyPressed(e.getKeyCode());
             }
@@ -185,7 +188,6 @@ public class Vista extends JFrame {
             images.put("*", ImageIO.read(getClass().getResource("./images/sueloPunto2.png")));
         } catch (IOException e) {
             e.printStackTrace();
-            // System.exit(-1);
             
         }
     }
@@ -216,12 +218,12 @@ public class Vista extends JFrame {
         // Actualizar el JLabel con el nivel actual
         levelLabel.setText(partida.getNivel().getTablero().getNombreNivel());
 
-        int total_points = (int)partida.getPuntuacionAbsoluta();
-        int points = (int)partida.getNivel().getPuntuacionRelativa();
+        int total = partida.getPuntuacionAbsoluta();
+        int points = partida.getNivel().getPuntuacionRelativa();
         
         // Actualizar los JLabel de puntos y total
         pointsLabel.setText("Points: " + points);
-        totalPoints.setText("Total: " + total_points);
+        totalPoints.setText("Total: " + total);
 
         // Agregar los JLabel al JFrame
         getContentPane().add(levelLabel);
@@ -264,8 +266,7 @@ public class Vista extends JFrame {
 
     public void mostrarFinPartida() {
         JOptionPane.showMessageDialog(this, "¡Enhorabuena! Has completado todos los niveles", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
-        
-        System.exit(0);   
+        dispose();   
     }
   
 }
