@@ -46,7 +46,7 @@ public class Vista extends JFrame {
 
     public Vista() {
 
-        images = new HashMap<String, BufferedImage>();
+        images = new HashMap<>();
         try {
             loadImages();
         } catch (Exception e) {
@@ -170,7 +170,7 @@ public class Vista extends JFrame {
     }
     // auxiliar method to get the images and associate them with the characters of the matrix that represent 
     // different elements of the game
-    private void loadImages() throws Exception{
+    private void loadImages() throws IOException{
         // reminder of the symbols used
         // + : Wall
         // . : Empty square // tambien " "
