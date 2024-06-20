@@ -211,11 +211,9 @@ public class Vista extends JFrame {
 
         // necesitamos la matriz de tablero para dibujarla
         TableroInterface tab = partida.getNivel().getTablero();
-        // System.out.println(tab.toString());
         char[][] matriz = tab.getMatriz();
        
         // Actualizar el JLabel con el nivel actual
-        // levelLabel.setText("Level: " + partida.getNumeroNivel());
         levelLabel.setText(partida.getNivel().getTablero().getNombreNivel());
 
         int total_points = (int)partida.getPuntuacionAbsoluta();
@@ -238,7 +236,6 @@ public class Vista extends JFrame {
                 drawMatrizPix(matriz,g);
             }
         };
-        // getContentPane().add(panel);
 
         //  Ajustar el tamaño del panel al tamaño de la matriz
         panel.setPreferredSize(new Dimension(matriz[0].length * size, matriz.length * size));
@@ -267,7 +264,8 @@ public class Vista extends JFrame {
 
     public void mostrarFinPartida() {
         JOptionPane.showMessageDialog(this, "¡Enhorabuena! Has completado todos los niveles", "Fin de la partida", JOptionPane.INFORMATION_MESSAGE);
-        //TODO: cerrar juego cuando usuario pulse aceptar
+        
+        System.exit(0);   
     }
   
 }
