@@ -158,6 +158,7 @@ public class Vista extends JFrame {
     private void setupKeyListener() {
         setFocusable(true);
         addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
                 c.ejecutarTecla(e.getKeyCode());
             }
