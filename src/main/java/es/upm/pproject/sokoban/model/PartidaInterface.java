@@ -78,9 +78,10 @@ public interface PartidaInterface {
 
 
     /**
-     * Reiniciar el nivelOv
+     * Reiniciar el nivel
+     * @return true si se ha podido reiniciar y false en caso contrario
      */
-    void reiniciar();
+    boolean reiniciar();
 
     /**
      * Deshacer el último movimiento realizado.

@@ -134,15 +134,16 @@ public class Partida implements PartidaInterface {
     }
 
     @Override
-    public void reiniciar() {
-
+    public boolean reiniciar() {
         int currentLevel = numeroNivel;
         try {
             this.puntuacionAbsoluta = this.puntuacionAbsoluta - nivel.getPuntuacionRelativa();
             nivel = new Nivel(currentLevel);
         } catch (FileNotFoundException | IncorrectLevelException e) {
             LOGGER.error("Error al reiniciar el nivel {}: {}", currentLevel, e.getMessage());
+            return false;
         }
+        return true;
     }
 
     @Override
