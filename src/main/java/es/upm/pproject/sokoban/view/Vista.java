@@ -179,14 +179,14 @@ public class Vista extends JFrame {
         // # : Box
         // W : Warehouse man
         try {
-            images.put("#", ImageIO.read(getClass().getResource("./images/cajaInt.png")));
-            images.put("W", ImageIO.read(getClass().getResource("./images/man.png")));
-            images.put("&", ImageIO.read(getClass().getResource("./images/man.png")));
-            images.put("_", ImageIO.read(getClass().getResource("./images/cajaInt.png")));
+            images.put("#", ImageIO.read(getClass().getResource("/images/cajaInt.png")));
+            images.put("W", ImageIO.read(getClass().getResource("/images/man.png")));
+            images.put("&", ImageIO.read(getClass().getResource("/images/man.png")));
+            images.put("_", ImageIO.read(getClass().getResource("/images/cajaInt.png")));
 
-            images.put("+", ImageIO.read(getClass().getResource("./images/wall.png")));
-            images.put(" ", ImageIO.read(getClass().getResource("./images/suelo2.png")));
-            images.put("*", ImageIO.read(getClass().getResource("./images/sueloPunto2.png")));
+            images.put("+", ImageIO.read(getClass().getResource("/images/wall.png")));
+            images.put(" ", ImageIO.read(getClass().getResource("/images/suelo2.png")));
+            images.put("*", ImageIO.read(getClass().getResource("/images/sueloPunto2.png")));
         } catch (IOException e) {
             e.printStackTrace();
             
