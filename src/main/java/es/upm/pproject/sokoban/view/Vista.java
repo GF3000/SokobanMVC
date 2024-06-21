@@ -27,7 +27,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import es.upm.pproject.sokoban.controller.ControladorInterface;
-import es.upm.pproject.sokoban.model.Nivel;
 import es.upm.pproject.sokoban.model.PartidaInterface;
 import es.upm.pproject.sokoban.model.TableroInterface;
 
