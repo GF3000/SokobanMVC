@@ -23,7 +23,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import es.upm.pproject.sokoban.controller.ControladorInterface;
+import es.upm.pproject.sokoban.model.Nivel;
 import es.upm.pproject.sokoban.model.PartidaInterface;
 import es.upm.pproject.sokoban.model.TableroInterface;
 
@@ -38,7 +42,7 @@ public class Vista extends JFrame {
     private JLabel levelLabel;
     private JLabel pointsLabel;
     private JLabel totalPoints;
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(Vista.class);
 
     /**
      * Constructor de la clase Vista
@@ -49,7 +53,7 @@ public class Vista extends JFrame {
         try {
             loadImages();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("Error al cargar las imagenes: {}", e.getMessage());
         }
         setupFrame();
         setupLabels();
@@ -188,7 +192,7 @@ public class Vista extends JFrame {
             images.put(" ", ImageIO.read(getClass().getResource("/images/suelo2.png")));
             images.put("*", ImageIO.read(getClass().getResource("/images/sueloPunto2.png")));
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error al leer las imagenes: {}", e.getMessage());
             
         }
     }
